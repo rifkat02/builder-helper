@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnCalculate: Button
     private lateinit var txtResult: TextView
 
-    private var currentCalculator = 1 // 1: Шпаклёвка, 2: Обои, 3: Краска, 4: Колеровка, 5: Цемент, 6: Штукатурка, 7: Пеноплекс, 8: ПВХ, 9: Плитка, 10: Кирпич, 11: Потолок
+    private var currentCalculator = 1 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,34 +55,32 @@ class MainActivity : AppCompatActivity() {
         btnCalculate = findViewById(R.id.btnCalculate)
         txtResult = findViewById(R.id.txtResult)
 
-        // Меню (бургер)
+        // Бургер меню
         findViewById<ImageButton>(R.id.btnMenu).setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
-        // Кнопка Поделиться
+        // Поделиться
         findViewById<ImageButton>(R.id.btnShare).setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
-                putExtra(Intent.EXTRA_TEXT, "Лучший помощник в строительстве — приложение 'Помогатор Строителя'!")
+                putExtra(Intent.EXTRA_TEXT, "Строительный калькулятор 'Помогатор Строителя' — незаменимый инструмент для точного расчёта!")
             }
             startActivity(Intent.createChooser(intent, "Поделиться"))
         }
 
-        // Настройка языков в меню
+        // Выбор языка
         val languages = arrayOf("Русский", "English", "O'zbekcha", "Тоҷикӣ", "Հայերեն", "Беларуская", "ქართული", "Moldovenească", "Кыргызча", "Қазақша")
         val langAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, languages)
         findViewById<Spinner>(R.id.spinnerLanguage).adapter = langAdapter
 
-        // Установка калькулятора по умолчанию (Шпаклёвка)
         setupCalculatorUI()
 
-        // Кнопка расчёта для всех калькуляторов
         btnCalculate.setOnClickListener {
             calculateResult()
         }
 
-        // Кнопки бокового меню (Калькуляторы)
+        // Переключение калькуляторов в меню
         findViewById<Button>(R.id.menuPutty).setOnClickListener { currentCalculator = 1; setupCalculatorUI(); drawerLayout.closeDrawers() }
         findViewById<Button>(R.id.menuWallpaper).setOnClickListener { currentCalculator = 2; setupCalculatorUI(); drawerLayout.closeDrawers() }
         findViewById<Button>(R.id.menuPaint).setOnClickListener { currentCalculator = 3; setupCalculatorUI(); drawerLayout.closeDrawers() }
@@ -94,21 +92,14 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.menuFloorTile).setOnClickListener { currentCalculator = 9; setupCalculatorUI(); drawerLayout.closeDrawers() }
         findViewById<Button>(R.id.menuMasonry).setOnClickListener { currentCalculator = 10; setupCalculatorUI(); drawerLayout.closeDrawers() }
         findViewById<Button>(R.id.menuCeilingTile).setOnClickListener { currentCalculator = 11; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        findViewById<Button>(R.id.menuPlinth).setOnClickListener { currentCalculator = 12; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        findViewById<Button>(R.id.menuSelfLeveling).setOnClickListener { currentCalculator = 13; setupCalculatorUI(); drawerLayout.closeDrawers() }
 
-        // Нижняя навигация
-        findViewById<LinearLayout>(R.id.navHome).setOnClickListener {
-            currentCalculator = 1
-            setupCalculatorUI()
-        }
-        findViewById<LinearLayout>(R.id.navAbout).setOnClickListener {
-            showInfoDialog("О нас", "Помогатор Строителя — ваш надежный цифровой помощник для точных расчетов строительных и отделочных материалов.")
-        }
-        findViewById<LinearLayout>(R.id.navContacts).setOnClickListener {
-            showInfoDialog("Контакты", "По вопросам поддержки и предложениям пишите на support@builderhelper.app")
-        }
-        findViewById<LinearLayout>(R.id.navPrivacy).setOnClickListener {
-            showInfoDialog("Политика конфиденциальности", "Приложение не собирает персональные данные и работает полностью автономно.")
-        }
+        // Нижняя панель
+        findViewById<LinearLayout>(R.id.navHome).setOnClickListener { currentCalculator = 1; setupCalculatorUI() }
+        findViewById<LinearLayout>(R.id.navAbout).setOnClickListener { showInfoDialog("О нас", "Помогатор Строителя — удобный универсальный калькулятор для мастеров и прорабов.") }
+        findViewById<LinearLayout>(R.id.navContacts).setOnClickListener { showInfoDialog("Контакты", "Поддержка: support@pomogator-builder.app\nTelegram: @builder_helper_bot") }
+        findViewById<LinearLayout>(R.id.navPrivacy).setOnClickListener { showInfoDialog("Приваси", "Приложение работает полностью офлайн и не собирает личные данные.") }
     }
 
     private fun setupCalculatorUI() {
@@ -123,7 +114,7 @@ class MainActivity : AppCompatActivity() {
                 calcTitle.text = "Шпаклёвка"
                 calcSubtitle.text = "Расчёт расхода шпаклёвки по типу смеси и площади"
                 lblParam1.text = "Вид шпаклёвки"
-                val items = arrayOf("Финишная (1.2 кг/м²/мм)", "Стартовая (1.4 кг/м²/мм)", "Гипсовая (1.0 кг/м²/мм)")
+                val items = arrayOf("Финишная (1.2 кг/м²/мм)", "Стартовая (1.5 кг/м²/мм)", "Штукатурная (1.0 кг/м²/мм)", "Суперфиниш (1.1 кг/м²/мм)")
                 spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
                 lblParam2.text = "Площадь стен (м²)"
                 inputArea.setText("25")
@@ -132,39 +123,39 @@ class MainActivity : AppCompatActivity() {
                 lblParam4.text = "Вес мешка (кг)"
                 inputBagWeight.setText("20")
             }
-            2 -> { // Обои по стенам
+            2 -> { // Обои
                 calcTitle.text = "Обои по стенам"
-                calcSubtitle.text = "Расчет количества рулонов обоев"
-                lblParam1.text = "Тип обоев"
-                val items = arrayOf("Стандартные (0.53м x 10м)", "Широкие (1.06м x 10м)")
+                calcSubtitle.text = "Расчёт рулонов обоев с учётом окон и дверей"
+                lblParam1.text = "Размер рулона"
+                val items = arrayOf("0.53 м х 10.05 м", "1.06 м х 10.05 м (Евро)", "1.06 м х 25 м")
                 spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
-                lblParam2.text = "Площадь комнаты (м²)"
-                inputArea.setText("30")
-                lblParam3.visibility = View.GONE
-                inputThickness.visibility = View.GONE
+                lblParam2.text = "Периметр комнаты (м)"
+                inputArea.setText("18")
+                lblParam3.text = "Высота потолка (м)"
+                inputThickness.setText("2.7")
                 lblParam4.visibility = View.GONE
                 inputBagWeight.visibility = View.GONE
             }
             3 -> { // Краска
                 calcTitle.text = "Краска (все виды)"
-                calcSubtitle.text = "Расчет объема краски на площадь"
+                calcSubtitle.text = "Расчёт краски для всех типов поверхностей"
                 lblParam1.text = "Тип краски"
-                val items = arrayOf("Водоэмульсионная (0.15 кг/м²)", "Акриловая (0.2 кг/м²)", "Масляная (0.25 кг/м²)")
+                val items = arrayOf("Водоэмульсионная (120 мл/м²)", "Акриловая (150 мл/м²)", "Латексная (110 мл/м²)", "Эмаль (160 мл/м²)")
                 spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
                 lblParam2.text = "Площадь окраски (м²)"
                 inputArea.setText("40")
-                lblParam3.text = "Количество слоев"
+                lblParam3.text = "Количество слоёв"
                 inputThickness.setText("2")
-                lblParam4.text = "Объем банки (л/кг)"
-                inputBagWeight.setText("5")
+                lblParam4.text = "Запас (%)"
+                inputBagWeight.setText("10")
             }
             4 -> { // Колеровка
                 calcTitle.text = "Колеровка"
-                calcSubtitle.text = "Расчет колер-пасты для смесей"
-                lblParam1.text = "Насыщенность"
-                val items = arrayOf("Пастельный (1%)", "Средний (3%)", "Насыщенный (5%)")
+                calcSubtitle.text = "Расчёт колер-пасты для всех типов смесей"
+                lblParam1.text = "Насыщенность тона"
+                val items = arrayOf("Пастельный (1%)", "Средний тон (3%)", "Насыщенный (5%)", "Яркий (10%)")
                 spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
-                lblParam2.text = "Объем основы (л/кг)"
+                lblParam2.text = "Объём базы (л/кг)"
                 inputArea.setText("10")
                 lblParam3.visibility = View.GONE
                 inputThickness.visibility = View.GONE
@@ -173,22 +164,22 @@ class MainActivity : AppCompatActivity() {
             }
             5 -> { // Цемент и песок
                 calcTitle.text = "Цемент и песок"
-                calcSubtitle.text = "Расчет компонентов для раствора"
+                calcSubtitle.text = "Расчёт компонентов раствора"
                 lblParam1.text = "Марка раствора"
-                val items = arrayOf("М-150 (Цемент : Песок = 1:3)", "М-200 (Цемент : Песок = 1:2.5)")
+                val items = arrayOf("Раствор М75", "Раствор М100", "Раствор М150", "Бетон М200")
                 spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
-                lblParam2.text = "Объем раствора (м³)"
+                lblParam2.text = "Требуемый объём (м³)"
                 inputArea.setText("1")
                 lblParam3.visibility = View.GONE
                 inputThickness.visibility = View.GONE
                 lblParam4.visibility = View.GONE
                 inputBagWeight.visibility = View.GONE
             }
-            6 -> { // Декоративная штукатурка
+            6 -> { // Штукатурка
                 calcTitle.text = "Декоративная штукатурка"
-                calcSubtitle.text = "Расчет фактурных покрытий"
+                calcSubtitle.text = "Все виды декоративных покрытий"
                 lblParam1.text = "Вид покрытия"
-                val items = arrayOf("Короед (3 кг/м²)", "Шуба (2.5 кг/м²)", "Венецианская (1 кг/м²)")
+                val items = arrayOf("Короед (3.0 кг/м²)", "Барашек (2.5 кг/м²)", "Венецианская (0.8 кг/м²)", "Арт-бетон (2.1 кг/м²)")
                 spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
                 lblParam2.text = "Площадь нанесения (м²)"
                 inputArea.setText("20")
@@ -199,12 +190,12 @@ class MainActivity : AppCompatActivity() {
             }
             7 -> { // Пеноплекс
                 calcTitle.text = "Обшивка пеноплексом"
-                calcSubtitle.text = "Расчет утеплителя"
+                calcSubtitle.text = "Расчёт XPS панелей и клея"
                 lblParam1.text = "Толщина плиты"
-                val items = arrayOf("30 мм", "50 мм", "100 мм")
+                val items = arrayOf("20 мм (20 шт/пач)", "30 мм (13 шт/пач)", "50 мм (8 шт/пач)", "100 мм (4 шт/пач)")
                 spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
                 lblParam2.text = "Площадь утепления (м²)"
-                inputArea.setText("25")
+                inputArea.setText("30")
                 lblParam3.visibility = View.GONE
                 inputThickness.visibility = View.GONE
                 lblParam4.visibility = View.GONE
@@ -212,22 +203,22 @@ class MainActivity : AppCompatActivity() {
             }
             8 -> { // ПВХ панели
                 calcTitle.text = "ПВХ панели"
-                calcSubtitle.text = "Расчет панелей и профилей"
-                lblParam1.text = "Размер панели"
-                val items = arrayOf("Стандарт (0.25м x 2.7м)")
+                calcSubtitle.text = "Расчёт панелей и профилей"
+                lblParam1.text = "Ширина панели"
+                val items = arrayOf("250 мм (0.25 м)", "375 мм (0.375 м)", "500 мм (0.50 м)")
                 spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
-                lblParam2.text = "Площадь стен (м²)"
-                inputArea.setText("18")
+                lblParam2.text = "Длина стены/потолка (м)"
+                inputArea.setText("4")
                 lblParam3.visibility = View.GONE
                 inputThickness.visibility = View.GONE
                 lblParam4.visibility = View.GONE
                 inputBagWeight.visibility = View.GONE
             }
-            9 -> { // Напольная плитка
+            9 -> { // Плитка
                 calcTitle.text = "Напольная плитка"
-                calcSubtitle.text = "Расчет плитки и запаса"
+                calcSubtitle.text = "Расчёт керамогранита и клея"
                 lblParam1.text = "Способ укладки"
-                val items = arrayOf("Прямая (запас +5%)", "Диагональная (запас +15%)")
+                val items = arrayOf("Прямая (+10% запаса)", "Диагональная (+15% запаса)")
                 spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
                 lblParam2.text = "Площадь пола (м²)"
                 inputArea.setText("15")
@@ -236,24 +227,24 @@ class MainActivity : AppCompatActivity() {
                 lblParam4.visibility = View.GONE
                 inputBagWeight.visibility = View.GONE
             }
-            10 -> { // Кладка блоков
+            10 -> { // Кладка
                 calcTitle.text = "Кладка блоков и кирпича"
-                calcSubtitle.text = "Расчет строительных блоков"
-                lblParam1.text = "Тип материала"
-                val items = arrayOf("Газоблок (600x300x200)", "Кирпич одинарный")
+                calcSubtitle.text = "Кирпич, газоблок, керамзитоблок"
+                lblParam1.text = "Материал кладки"
+                val items = arrayOf("Кирпич одинарный (51 шт/м²)", "Кирпич полуторный (39 шт/м²)", "Газоблок (8.3 шт/м²)")
                 spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
                 lblParam2.text = "Площадь кладки (м²)"
-                inputArea.setText("20")
+                inputArea.setText("60")
                 lblParam3.visibility = View.GONE
                 inputThickness.visibility = View.GONE
                 lblParam4.visibility = View.GONE
                 inputBagWeight.visibility = View.GONE
             }
-            11 -> { // Потолочная плитка
+            11 -> { // Потолок
                 calcTitle.text = "Потолочная плитка"
-                calcSubtitle.text = "Расчет плит 50x50 см"
-                lblParam1.text = "Запас на подрезку"
-                val items = arrayOf("Стандарт (+5%)", "Сложный потолок (+10%)")
+                calcSubtitle.text = "Расчёт плитки 50х50 см"
+                lblParam1.text = "Размер плитки"
+                val items = arrayOf("50 x 50 см", "30 x 30 см", "60 x 60 см")
                 spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
                 lblParam2.text = "Площадь потолка (м²)"
                 inputArea.setText("12")
@@ -261,6 +252,32 @@ class MainActivity : AppCompatActivity() {
                 inputThickness.visibility = View.GONE
                 lblParam4.visibility = View.GONE
                 inputBagWeight.visibility = View.GONE
+            }
+            12 -> { // Плинтус
+                calcTitle.text = "Плинтус"
+                calcSubtitle.text = "Расчёт напольного/потолочного плинтуса"
+                lblParam1.text = "Длина одной планки (м)"
+                val items = arrayOf("2.5 м", "2.0 м", "3.0 м")
+                spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
+                lblParam2.text = "Периметр помещения (м)"
+                inputArea.setText("18")
+                lblParam3.text = "Вычет дверей (м)"
+                inputThickness.setText("0.9")
+                lblParam4.visibility = View.GONE
+                inputBagWeight.visibility = View.GONE
+            }
+            13 -> { // Наливной пол
+                calcTitle.text = "Наливной пол / Стяжка"
+                calcSubtitle.text = "Расчёт смеси для выравнивания полов"
+                lblParam1.text = "Расход смеси"
+                val items = arrayOf("Стандарт (1.5 кг/м²/мм)", "Легкий (1.2 кг/м²/мм)", "Тяжелый (1.8 кг/м²/мм)")
+                spinnerType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
+                lblParam2.text = "Площадь пола (м²)"
+                inputArea.setText("20")
+                lblParam3.text = "Толщина слоя (мм)"
+                inputThickness.setText("10")
+                lblParam4.text = "Вес мешка (кг)"
+                inputBagWeight.setText("25")
             }
         }
     }
@@ -272,61 +289,77 @@ class MainActivity : AppCompatActivity() {
 
         val resultText = when (currentCalculator) {
             1 -> { // Шпаклёвка
-                val rate = when (spinnerType.selectedItemPosition) { 0 -> 1.2; 1 -> 1.4; else -> 1.0 }
+                val rate = when (spinnerType.selectedItemPosition) { 0 -> 1.2; 1 -> 1.5; 2 -> 1.0; else -> 1.1 }
                 val totalKg = val1 * val2 * rate
                 val bags = Math.ceil(totalKg / val3).toInt()
-                "Расход: %.1f кг\nМешков (по %.0f кг): %d шт.".format(totalKg, val3, bags)
+                "Общий вес: %.1f кг\nМешков (по %.0f кг): %d шт.".format(totalKg, val3, bags)
             }
             2 -> { // Обои
-                val rollArea = if (spinnerType.selectedItemPosition == 0) 5.0 else 10.0
-                val rolls = Math.ceil(val1 / rollArea * 1.1).toInt()
-                "Требуется рулонов (с учетом запаса 10%): %d шт.".format(rolls)
+                val rollW = if (spinnerType.selectedItemPosition == 0) 0.53 else 1.06
+                val rollL = if (spinnerType.selectedItemPosition == 2) 25.0 else 10.05
+                val stripsPerRoll = Math.floor(rollL / val2)
+                val totalStrips = Math.ceil(val1 / rollW)
+                val rolls = Math.ceil(totalStrips / stripsPerRoll).toInt()
+                "Всего полос: %.0f шт.\nПотребуется рулонов: %d шт.".format(totalStrips, rolls)
             }
             3 -> { // Краска
-                val rate = when (spinnerType.selectedItemPosition) { 0 -> 0.15; 1 -> 0.2; else -> 0.25 }
-                val totalLiters = val1 * rate * val2
-                val cans = Math.ceil(totalLiters / val3).toInt()
-                "Общий расход: %.1f л\nБанок (по %.1f л): %d шт.".format(totalLiters, val3, cans)
+                val rate = when (spinnerType.selectedItemPosition) { 0 -> 0.12; 1 -> 0.15; 2 -> 0.11; else -> 0.16 }
+                val totalLiters = val1 * rate * val2 * (1 + val3 / 100)
+                "Необходимый объём: %.2f л".format(totalLiters)
             }
             4 -> { // Колеровка
-                val percent = when (spinnerType.selectedItemPosition) { 0 -> 0.01; 1 -> 0.03; else -> 0.05 }
-                val totalMl = val1 * 1000 * percent
-                "Необходимо колер-пасты: %.0f мл".format(totalMl)
+                val percent = when (spinnerType.selectedItemPosition) { 0 -> 0.01; 1 -> 0.03; 2 -> 0.05; else -> 0.10 }
+                val colorantMl = val1 * 1000 * percent
+                "Объём колер-пасты: %.0f мл".format(colorantMl)
             }
             5 -> { // Цемент и песок
-                val cementKg = val1 * 300
-                val sandKg = val1 * 1050
-                val bags50 = Math.ceil(cementKg / 50).toInt()
-                "Цемент: %.0f кг (мешков по 50кг: %d)\nПесок: %.0f кг".format(cementKg, bags50, sandKg)
+                var cementKg = 300.0; var sandKg = 1200.0
+                if (spinnerType.selectedItemPosition == 0) { cementKg = 260.0; sandKg = 1250.0 }
+                if (spinnerType.selectedItemPosition == 1) { cementKg = 320.0; sandKg = 1150.0 }
+                if (spinnerType.selectedItemPosition == 2) { cementKg = 400.0; sandKg = 1100.0 }
+                val cementBags = Math.ceil((cementKg * val1) / 50).toInt()
+                "Цемент: %.0f кг (%d меш. по 50кг)\nПесок: %.0f кг".format(cementKg * val1, cementBags, sandKg * val1)
             }
             6 -> { // Штукатурка
-                val rate = when (spinnerType.selectedItemPosition) { 0 -> 3.0; 1 -> 2.5; else -> 1.0 }
-                val totalKg = val1 * rate
-                "Общий вес смеси: %.1f кг".format(totalKg)
+                val rate = when (spinnerType.selectedItemPosition) { 0 -> 3.0; 1 -> 2.5; 2 -> 0.8; else -> 2.1 }
+                "Штукатурка: %.1f кг".format(val1 * rate)
             }
             7 -> { // Пеноплекс
-                val boards = Math.ceil(val1 / 0.72 * 1.05).toInt()
-                "Плит утеплителя (с запасом 5%): %d шт.".format(boards)
+                val totalSheets = Math.ceil(val1 / 0.288).toInt()
+                val perPack = when (spinnerType.selectedItemPosition) { 0 -> 20; 1 -> 13; 2 -> 8; else -> 4 }
+                val packs = Math.ceil(totalSheets.toDouble() / perPack).toInt()
+                "Всего плит: %d шт.\nУпаковок: %d пач.".format(totalSheets, packs)
             }
-            8 -> { // ПВХ панели
-                val panels = Math.ceil(val1 / 0.675 * 1.1).toInt()
-                "Панелей ПВХ (с запасом 10%): %d шт.".format(panels)
+            8 -> { // ПВХ
+                val panelW = when (spinnerType.selectedItemPosition) { 0 -> 0.25; 1 -> 0.375; else -> 0.5 }
+                val panels = Math.ceil(val1 / panelW).toInt()
+                "Количество панелей: %d шт.".format(panels)
             }
-            9 -> { // Напольная плитка
-                val factor = if (spinnerType.selectedItemPosition == 0) 1.05 else 1.15
-                val areaWithReserve = val1 * factor
-                "Площадь с учетом запаса: %.2f м²".format(areaWithReserve)
+            9 -> { // Плитка
+                val margin = if (spinnerType.selectedItemPosition == 0) 1.10 else 1.15
+                "Площадь плитки с запасом: %.2f м²".format(val1 * margin)
             }
-            10 -> { // Кладка блоков
-                val count = if (spinnerType.selectedItemPosition == 0) val1 * 8.3 else val1 * 51
-                "Необходимо блоков/кирпичей: %d шт.".format(Math.ceil(count).toInt())
+            10 -> { // Кладка
+                val perM2 = when (spinnerType.selectedItemPosition) { 0 -> 51.0; 1 -> 39.0; else -> 8.3 }
+                "Необходимо элементов: %d шт.".format(Math.ceil(val1 * perM2).toInt())
             }
-            11 -> { // Потолочная плитка
-                val factor = if (spinnerType.selectedItemPosition == 0) 1.05 else 1.10
-                val tiles = Math.ceil(val1 * 4 * factor).toInt()
-                "Потолочных плиток (50x50см): %d шт.".format(tiles)
+            11 -> { // Потолок
+                val tileSize = when (spinnerType.selectedItemPosition) { 0 -> 0.25; 1 -> 0.09; else -> 0.36 }
+                val count = Math.ceil((val1 * 1.1) / tileSize).toInt()
+                "Плитки (с запасом 10%%): %d шт.".format(count)
             }
-            else -> "Расчет выполнен успешно!"
+            12 -> { // Плинтус
+                val net = Math.max(0.0, val1 - val2)
+                val count = Math.ceil((net * 1.05) / 2.5).toInt()
+                "Планки плинтуса: %d шт.".format(count)
+            }
+            13 -> { // Наливной пол
+                val rate = when (spinnerType.selectedItemPosition) { 0 -> 1.5; 1 -> 1.2; else -> 1.8 }
+                val totalKg = val1 * val2 * rate
+                val bags = Math.ceil(totalKg / val3).toInt()
+                "Смеси всего: %.1f кг\nМешков (по %.0f кг): %d шт.".format(totalKg, val3, bags)
+            }
+            else -> "Готово"
         }
 
         txtResult.visibility = View.VISIBLE
