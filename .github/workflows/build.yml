@@ -9,22 +9,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 1. Клонирование кода
+    - name: 1. Клонирование репозитория
       uses: actions/checkout@v4
 
-    - name: 2. Настройка Java 17
+    - name: 2. Настройка Java (JDK 17)
       uses: actions/setup-java@v5
       with:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: 3. Сборка проекта через Gradle
-      uses: gradle/gradle-build-action@v3
-      with:
-        gradle-version: '8.5'
-        arguments: assembleDebug
+    - name: 3. Установка Gradle в систему
+      run: sudo apt-get update && sudo apt-get install -y gradle
 
-    - name: 4. Сохранение готового APK
+    - name: 4. Автоматическое создание Gradle Wrapper
+      run: gradle wrapper --gradle-version 8.5
+
+    - name: 5. Сборка Debug APK
+      run: ./gradlew assembleDebug
+
+    - name: 6. Сохранение готового APK
       uses: actions/upload-artifact@v4
       with:
         name: BuilderHelper-Debug-APK
