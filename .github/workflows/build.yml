@@ -3,8 +3,6 @@ name: Build Android APK
 on:
   push:
     branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
 
 jobs:
   build:
@@ -20,13 +18,11 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: 3. Настройка Gradle
-      uses: gradle/actions/setup-gradle@v3
+    - name: 3. Установка Gradle в систему
+      run: sudo apt-get update && sudo apt-get install -y gradle
 
-    - name: 4. Генерация wrapper и сборка APK
-      run: |
-        gradle wrapper
-        ./gradlew assembleDebug
+    - name: 4. Сборка Debug APK
+      run: gradle assembleDebug
 
     - name: 5. Сохранение готового APK
       uses: actions/upload-artifact@v4
