@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Светло-зеленая строительная палитра -->
+    <color name="green_primary">#2E7D32</color>
+    <color name="green_primary_light">#A5D6A7</color>
+    <color name="green_accent">#4CAF50</color>
+    <color name="green_bg_light">#F1F8E9</color>
+    <color name="green_card_bg">#E8F5E9</color>
+    
+    <color name="text_dark">#1B5E20</color>
+    <color name="text_muted">#558B2F</color>
+    <color name="white">#FFFFFF</color>
+</resources>
