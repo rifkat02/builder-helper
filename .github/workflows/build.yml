@@ -13,18 +13,21 @@ jobs:
       uses: actions/checkout@v4
 
     - name: 2. Настройка Java (JDK 17)
-      uses: actions/setup-java@v5
+      uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: 3. Установка Gradle в систему
-      run: sudo apt-get update && sudo apt-get install -y gradle
+    - name: 3. Загрузка и установка Gradle 8.5
+      run: |
+        wget -q https://services.gradle.org/distributions/gradle-8.5-bin.zip
+        unzip -q gradle-8.5-bin.zip
+        echo "$PWD/gradle-8.5/bin" >> $GITHUB_PATH
 
     - name: 4. Создание конфигурации SDK
       run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
 
-    - name: 5. Генерация Gradle Wrapper (Версия 8.5)
+    - name: 5. Генерация Gradle Wrapper
       run: gradle wrapper --gradle-version 8.5 --distribution-type bin
 
     - name: 6. Сборка Debug APK
