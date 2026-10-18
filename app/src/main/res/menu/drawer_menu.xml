@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/calc_wall_brick"
+            android:icon="@android:drawable/ic_menu_add"
+            android:title="1. Кирпичи и Блоки (с учётом окон/дверей)" />
+        <item
+            android:id="@+id/calc_paint"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="2. ЛКМ: Краска, Эмаль, Колеровка" />
+        <item
+            android:id="@+id/calc_concrete"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="3. Бетон, Цемент и Песок (Фундамент)" />
+        <item
+            android:id="@+id/calc_drywall"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="4. Гипсокартон и Профили (Перегородки)" />
+        <item
+            android:id="@+id/calc_flooring"
+            android:icon="@android:drawable/ic_menu_crop"
+            android:title="5. Плитка, Ламинат, Штукатурка" />
+    </group>
+</menu>
