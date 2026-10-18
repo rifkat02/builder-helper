@@ -30,8 +30,8 @@ jobs:
     - name: 5. Генерация Gradle Wrapper
       run: gradle wrapper --gradle-version 8.5 --distribution-type bin
 
-    - name: 6. Сборка Debug APK
-      run: ./gradlew assembleDebug
+    - name: 6. Сборка Debug APK с отладкой
+      run: ./gradlew assembleDebug --stacktrace
 
     - name: 7. Сохранение готового APK
       uses: actions/upload-artifact@v4
