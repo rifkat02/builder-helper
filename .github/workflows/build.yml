@@ -13,18 +13,28 @@ jobs:
       uses: actions/checkout@v4
 
     - name: 2. Настройка Java (JDK 17)
-      uses: actions/setup-java@v5
+      uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: 3. Установка Gradle в систему
+    - name: 3. Подключение Android SDK к проекту
+      run: |
+        echo "sdk.dir=/usr/local/lib/android/sdk" > local.properties
+
+    - name: 4. Автоматическое принятие лицензий SDK
+      run: |
+        mkdir -p /usr/local/lib/android/sdk/licenses
+        echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > /usr/local/lib/android/sdk/licenses/android-sdk-license
+        echo -e "\n24333f8a63b6825ea3c5514f83c2829b004d1fb8" >> /usr/local/lib/android/sdk/licenses/android-sdk-license
+
+    - name: 5. Установка Gradle в систему
       run: sudo apt-get update && sudo apt-get install -y gradle
 
-    - name: 4. Сборка Debug APK
+    - name: 6. Сборка Debug APK
       run: gradle assembleDebug
 
-    - name: 5. Сохранение готового APK
+    - name: 7. Сохранение готового APK
       uses: actions/upload-artifact@v4
       with:
         name: BuilderHelper-Debug-APK
