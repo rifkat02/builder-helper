@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity() {
                 currentLangIndex = position
                 applyLocalization()
             }
-            override fun NothingSelected(parent: AdapterView<*>) {}
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
 
         // Кнопка переключения темы
@@ -162,7 +162,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.navHome).setOnClickListener { currentCalculator = 1; setupCalculatorUI() }
         findViewById<LinearLayout>(R.id.navAbout).setOnClickListener { showInfoDialog(getLocalizedText("О нас", "About Us", "Biz haqimizda", "Дар бораи мо", "Մեր մասին", "Пра нас", "ჩვენ შესახებ", "Despre noi", "Биз жөнүндө", "Біз туралы"), "Помогатор Строителя — универсальный калькулятор для точного расчёта стройматериалов.") }
         findViewById<LinearLayout>(R.id.navContacts).setOnClickListener { showInfoDialog(getLocalizedText("Контакты", "Contacts", "Aloqa", "Тамос", "Կապ", "Кантакты", "კონტაქტები", "Contacte", "Байланыштар", "Байланыстар"), "Поддержка: almukhametov.rifkat@yandex.ru") }
-        findViewById<LinearLayout>(R.id.navPrivacy).setOnClickListener { showInfoDialog(getLocalizedText("Приваси", "Privacy", "Maxfiylik", "Маҳрамият", "Գաղտնիություն", "Прыватнасць", "კონფიდენციალուრობა", "Confidențialitate", "Купуялуулук", "Құпиялылық"), "Приложение работает офлайн и не собирает личные данные.") }
+        findViewById<LinearLayout>(R.id.navPrivacy).setOnClickListener { showInfoDialog(getLocalizedText("Приваси", "Privacy", "Maxfiylik", "Маҳрамият", "Գաղտնիություն", "Прыватнасць", "კონფიდენციալուრობա", "Confidențialitate", "Купуялуулук", "Құпиялылық"), "Приложение работает офлайн и не собирает личные данные.") }
     }
 
     // Обработка кнопки "Назад" для подтверждения выхода
@@ -224,7 +224,7 @@ class MainActivity : AppCompatActivity() {
         txtLangLabel.setTextColor(textColor)
 
         if (isDarkMode) {
-            btnToggleTheme.text = getLocalizedText("Светлая тема", "Light Mode", "Yorqin rejim", "Ҳолати рӯшноӣ", "Լուսավոր ռեժիմ", "Светлая рэжым", "ნათელი რეժიმი", "Mod luminos", "Жарык режим", "Жарық режим")
+            btnToggleTheme.text = getLocalizedText("Светлая тема", "Light Mode", "Yorqin rejim", "Ҳолати рӯшноӣ", "Լուսավոր ռեժիմ", "Светлая рэжым", "ნათელი რეჟიმი", "Mod luminos", "Жарык режим", "Жарық режим")
             btnToggleTheme.setBackgroundColor(Color.parseColor("#334155"))
             btnToggleTheme.setTextColor(Color.WHITE)
         } else {
@@ -245,7 +245,7 @@ class MainActivity : AppCompatActivity() {
         txtNavHome.text = getLocalizedText("Домой", "Home", "Bosh sahifa", "Асосӣ", "Գլխավոր", "Дадому", "მთავარი", "Acasă", "Башкы", "Басты")
         txtNavAbout.text = getLocalizedText("О нас", "About Us", "Biz haqimizda", "Дар бораи мо", "Մեր մասին", "Пра нас", "ჩვენ შესახებ", "Despre noi", "Биз жөнүндө", "Біз туралы")
         txtNavContacts.text = getLocalizedText("Контакты", "Contacts", "Aloqa", "Тамос", "Կապ", "Кантакты", "კონტაქტები", "Contacte", "Байланыштар", "Байланыстар")
-        txtNavPrivacy.text = getLocalizedText("Приваси", "Privacy", "Maxfiylik", "Маҳрамият", "Գաղտնիություն", "Прыватнасць", "კონფიდენციალուრობա", "Confidențialitate", "Купуялуулук", "Құпиялылық")
+        txtNavPrivacy.text = getLocalizedText("Приваси", "Privacy", "Maxfiylik", "Маҳрамият", "Գաղտնիություն", "Прыватнасць", "კონფიდენციալուრობա", "Confidențialitate", "Купуялуулук", "Құпиялылық")
         btnCalculate.text = getLocalizedText("Рассчитать", "Calculate", "Hisoblash", "Ҳисоб кардан", "Հաշվել", "Разлічыць", "გამოთვლა", "Calculează", "Эсептөө", "Есептеу")
         setupCalculatorUI()
     }
@@ -311,13 +311,13 @@ class MainActivity : AppCompatActivity() {
                 calcTitle.text = getLocalizedText("Краска (все виды)", "Paint", "Bo'yoq", "Ранг", "Ներկ", "Фарба", "საღებავი", "Vopsea", "Боёк", "Боя")
                 calcSubtitle.text = getLocalizedText("Расчёт литров краски по площади и слоям", "Calculate paint liters", "Bo'yoq sarfini hisoblash", "Ҳисоби рангубори девор", "Ներկի հաշվարկ", "Разлік фарбы", "საღებავის ხარჯი", "Calculul vopselei", "Боёк чыгымы", "Боя шығыны")
                 lblParam1.text = getLocalizedText("Вид краски", "Paint type", "Bo'yoq turi", "Намуди ранг", "Ներկի տեսակ", "Від фарбы", "საღებავის ტიპი", "Tipul vopselei", "Боёк түрү", "Боя түрі")
-                lblParam2.text = getLocalizedText("Площадь покраски (м²)", "Painting area (m²)", "Bo'yash maydoni (m²)", "Масоҳати рангкунӣ (м²)", "Ներկման մակերես (մ²)", "Плошча фарбавання (м²)", "საღებავის ფართობი (მ²)", "Suprafața vopsită (m²)", "Боёк аянты (м²)", "Боялау алаңы (м²)")
+                lblParam2.text = getLocalizedText("Площадь покраски (м²)", "Painting area (m²)", "Bo'yash maydoni (m²)", "Масоҳати рангкунӣ (м²)", "Ներկման մակերես (մ²)", "Плошча фарбавання (м²)", "საღებავის ფართობი (მ²)", "Suprafața vopsită (m²)", "Боёк аянты (m²)", "Боялау алаңы (m²)")
             }
             4 -> {
                 calcTitle.text = getLocalizedText("Колеровка", "Coloring", "Kolerovka", "Колеровка", "Գունավորում", "Калероўка", "ფერწერა", "Colorare", "Түстөө", "Бояу")
                 calcSubtitle.text = getLocalizedText("Расчёт пигмента для колеровки краски", "Calculate pigment volume", "Kolerovka pigmentini hisoblash", "Ҳисоби рангги пигмент", "Գունավորման հաշվարկ", "Разлік пігмента", "პიგმენტის გამოთვლა", "Calculul pigmentului", "Пигмент эсептөө", "Пигмент есептеу")
                 lblParam1.text = getLocalizedText("Интенсивность", "Intensity", "Intensivlik", "Шиддатнокӣ", "Ինտենսիվություն", "Інтэнсіўнасць", "ინტენსივობა", "Intensitate", "Интенсивдүүлүк", "Интенсивтілік")
-                lblParam2.text = getLocalizedText("Объём базы (л)", "Base volume (l)", "Asos hajmi (l)", "Ҳаҷми асос (л)", "Հիմքի ծավալ (լ)", "Аб'ём базы (л)", "ბაზის მოცულობა (ლ)", "Volumul bazei (l)", "База көлөмү (л)", "База көлемі (л)")
+                lblParam2.text = getLocalizedText("Объём базы (л)", "Base volume (l)", "Asos hajmi (l)", "Ҳаҷми асос (л)", "Հիմքի ծավալ (լ)", "Аб'ём базы (л)", "ბაზის მოცულობა (ლ)", "Volumul bazei (l)", "База көлөмү (l)", "База көлемі (л)")
             }
             5 -> {
                 calcTitle.text = getLocalizedText("Цемент и песок", "Cement and Sand", "Sement va qum", "Семент ва қум", "Ցեմենտ և ավազ", "Цэмент і пясок", "ცემენტი და ქვიშა", "Ciment și nisip", "Цемент жана кум", "Цемент пен құм")
@@ -329,7 +329,7 @@ class MainActivity : AppCompatActivity() {
                 calcTitle.text = getLocalizedText("Декоративная штукатурка", "Decorative Plaster", "Dekorativ suvoq", "Сувоқи о تزинӣ", "Դեկորատիվ սվաղ", "Дэкаратыўная тынкоўка", "დეკორატივი შელესვა", "Tencuială decorativă", "Декоративдик суак", "Декоративті сылақ")
                 calcSubtitle.text = getLocalizedText("Расчёт декоративной штукатурки", "Calculate decorative plaster", "Dekorativ suvoq sarfi", "Ҳисоби сувоқи отичӣ", "Դեկորատիվ սվաղի հաշվարկ", "Разлік тынкоўкі", "დეკორატიული შელესვის ხარჯი", "Calculul tencuielii", "Суак чыгымы", "Сылақ шығыны")
                 lblParam1.text = getLocalizedText("Тип штукатурки", "Plaster type", "Suvoq turi", "Намуди сувоқ", "Սվաղի տեսակ", "Тып тынкоўкі", "შელესვის ტიპი", "Tipul tencuielii", "Суак түрү", "Сылақ түрі")
-                lblParam2.text = getLocalizedText("Площадь стен (м²)", "Wall area (m²)", "Devor maydoni (m²)", "Масоҳати девор (м²)", "Պատերի մակերես (մ²)", "Плошча сцен (м²)", "კედლების ფართობი (მ²)", "Suprafața pereților (m²)", "Дубал аянты (m²)", "Қабырға алаңы (м²)")
+                lblParam2.text = getLocalizedText("Площадь стен (м²)", "Wall area (m²)", "Devor maydoni (m²)", "Масоҳати девор (м²)", "Պատերի մակերես (մ²)", "Плошча сцен (м²)", "კედლების ფართობი (მ²)", "Suprafața pereților (m²)", "Дубал аянты (m²)", "Қабырға алаңы (m²)")
             }
             7 -> {
                 calcTitle.text = getLocalizedText("Обшивка пеноплексом", "Penoplex Insulation", "Penoplex qoplami", "Пеноплекс", "Пенопլեքս", "Пенаплекс", "პენოპლექსი", "Izolație Penoplex", "Пеноплекс жылуулоо", "Пеноплекс жылылау")
@@ -341,7 +341,7 @@ class MainActivity : AppCompatActivity() {
                 calcTitle.text = getLocalizedText("ПВХ панели", "PVC Panels", "PVX panellar", "Панелҳои ПВХ", "ՊՎԽ պանելներ", "ПВХ панэлі", "პვხ პანელები", "Panouri PVC", "ПВХ панелдери", "ПВХ панельдері")
                 calcSubtitle.text = getLocalizedText("Расчёт стеновых ПВХ панелей", "Calculate PVC panels", "PVX panellarini hisoblash", "Ҳисоби панелҳо", "ՊՎԽ պանելների հաշվարկ", "Разлік панэляў ПВХ", "პვხ პანელების ხარჯი", "Calculul panourilor PVC", "ПВХ панелдер", "ПВХ панельдері")
                 lblParam1.text = getLocalizedText("Ширина панели", "Panel width", "Panel kengligi", "Паҳнои панел", "Պանելի լայնություն", "Шырыня панэлі", "პანელის სიგანე", "Lățimea panoului", "Панель туурасы", "Панель ені")
-                lblParam2.text = getLocalizedText("Площадь стен (м²)", "Wall area (m²)", "Devor maydoni (m²)", "Масоҳати девор (м²)", "Պատերի մակերես (մ²)", "Плошча сцен (м²)", "კედლების ფართობი (მ²)", "Suprafața pereților (m²)", "Дубал аянты (m²)", "Қабырға алаңы (м²)")
+                lblParam2.text = getLocalizedText("Площадь стен (м²)", "Wall area (m²)", "Devor maydoni (m²)", "Масоҳати девор (м²)", "Պատերի մակերես (մ²)", "Плошча сцен (м²)", "კედლების ფართობი (მ²)", "Suprafața pereților (m²)", "Дубал аянты (m²)", "Қабырға алаңы (m²)")
             }
             9 -> {
                 calcTitle.text = getLocalizedText("Напольная плитка", "Floor Tile", "Polsiz plitka", "Плиткаи фарш", "Հատակի սալիկ", "Налогавая плітка", "იატაკის ფილა", "Gresie", "Пол плиткасы", "Еден плиткасы")
