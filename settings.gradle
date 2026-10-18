@@ -12,5 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "BuilderHelper"
+
+rootProject.name = "Builder Helper"
 include ':app'
