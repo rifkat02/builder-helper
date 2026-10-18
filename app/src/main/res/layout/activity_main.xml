@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="@color/bg_dark">
 
-    <!-- Главный экран -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -45,6 +44,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtAppTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Помогатор Строителя"
@@ -53,6 +53,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtHeaderSubtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Профессиональный расчёт"
@@ -70,7 +71,7 @@
                 app:tint="@color/text_white" />
         </LinearLayout>
 
-        <!-- Контейнер карточки калькулятора -->
+        <!-- Контейнер основного содержимого -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -86,7 +87,6 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <!-- Заголовок калькулятора -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
                     android:layout_marginVertical="16dp"
                     android:background="#222B3D"/>
 
-                <!-- Поле 1: Выбор типа -->
+                <!-- Поле 1 -->
                 <TextView
                     android:id="@+id/lblParam1"
                     android:layout_width="wrap_content"
@@ -147,7 +147,7 @@
                     android:layout_marginTop="6dp"
                     android:background="@color/input_dark" />
 
-                <!-- Поле 2: Площадь -->
+                <!-- Поле 2 -->
                 <TextView
                     android:id="@+id/lblParam2"
                     android:layout_width="wrap_content"
@@ -168,7 +168,7 @@
                     android:text="25"
                     android:textColor="@color/text_white" />
 
-                <!-- Поле 3: Толщина слоя -->
+                <!-- Поле 3 -->
                 <TextView
                     android:id="@+id/lblParam3"
                     android:layout_width="wrap_content"
@@ -189,7 +189,7 @@
                     android:text="2"
                     android:textColor="@color/text_white" />
 
-                <!-- Поле 4: Вес мешка -->
+                <!-- Поле 4 -->
                 <TextView
                     android:id="@+id/lblParam4"
                     android:layout_width="wrap_content"
@@ -236,7 +236,7 @@
             </LinearLayout>
         </ScrollView>
 
-        <!-- Нижняя навигация -->
+        <!-- Нижнее меню -->
         <LinearLayout
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
@@ -260,6 +260,7 @@
                     app:tint="@color/primary_orange" />
 
                 <TextView
+                    android:id="@+id/txtNavHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Домой"
@@ -282,6 +283,7 @@
                     app:tint="@color/text_gray" />
 
                 <TextView
+                    android:id="@+id/txtNavAbout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="О нас"
@@ -304,6 +306,7 @@
                     app:tint="@color/text_gray" />
 
                 <TextView
+                    android:id="@+id/txtNavContacts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Контакты"
@@ -326,6 +329,7 @@
                     app:tint="@color/text_gray" />
 
                 <TextView
+                    android:id="@+id/txtNavPrivacy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Приваси"
@@ -335,7 +339,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- Выдвижное боковое меню (Drawer) -->
+    <!-- Выдвижное боковое меню -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="280dp"
@@ -354,6 +358,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtMenuHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Калькуляторы"
@@ -361,7 +366,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <!-- Список калькуляторов -->
+                <!-- Полный список 13 калькуляторов -->
                 <Button android:id="@+id/menuPutty" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Шпаклёвка" android:backgroundTint="@color/primary_orange" android:textColor="@color/text_white" android:layout_marginTop="8dp"/>
                 <Button android:id="@+id/menuWallpaper" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Обои по стенам" android:backgroundTint="@color/input_dark" android:textColor="@color/text_white" android:layout_marginTop="4dp"/>
                 <Button android:id="@+id/menuPaint" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Краска (все виды)" android:backgroundTint="@color/input_dark" android:textColor="@color/text_white" android:layout_marginTop="4dp"/>
@@ -373,32 +378,22 @@
                 <Button android:id="@+id/menuFloorTile" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Напольная плитка" android:backgroundTint="@color/input_dark" android:textColor="@color/text_white" android:layout_marginTop="4dp"/>
                 <Button android:id="@+id/menuMasonry" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Кладка блоков и кирпича" android:backgroundTint="@color/input_dark" android:textColor="@color/text_white" android:layout_marginTop="4dp"/>
                 <Button android:id="@+id/menuCeilingTile" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Потолочная плитка" android:backgroundTint="@color/input_dark" android:textColor="@color/text_white" android:layout_marginTop="4dp"/>
+                <Button android:id="@+id/menuPlinth" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Плинтус" android:backgroundTint="@color/input_dark" android:textColor="@color/text_white" android:layout_marginTop="4dp"/>
+                <Button android:id="@+id/menuSelfLeveling" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Наливной пол / Стяжка" android:backgroundTint="@color/input_dark" android:textColor="@color/text_white" android:layout_marginTop="4dp"/>
 
                 <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#222B3D" android:layout_marginVertical="16dp"/>
 
                 <TextView
+                    android:id="@+id/txtSettingsHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="НАСТРОЙКИ"
                     android:textColor="@color/text_gray"
                     android:textSize="12sp" />
 
-                <!-- Переключатель тёмного режима -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center_vertical">
-                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Тёмный режим" android:textColor="@color/text_white"/>
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchDarkMode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"/>
-                </LinearLayout>
-
-                <!-- Выбор языка -->
+                <!-- Переключатель языка -->
                 <TextView
+                    android:id="@+id/txtLangLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
