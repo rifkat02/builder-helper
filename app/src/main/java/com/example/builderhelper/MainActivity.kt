@@ -43,11 +43,27 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txtMenuHeader: TextView
     private lateinit var txtSettingsHeader: TextView
     private lateinit var txtLangLabel: TextView
+    
     private lateinit var txtNavHome: TextView
     private lateinit var txtNavAbout: TextView
     private lateinit var txtNavContacts: TextView
     private lateinit var txtNavPrivacy: TextView
     private lateinit var btnToggleTheme: Button
+
+    // Кнопки меню калькуляторов
+    private lateinit var menuPutty: Button
+    private lateinit var menuWallpaper: Button
+    private lateinit var menuPaint: Button
+    private lateinit var menuColoring: Button
+    private lateinit var menuCement: Button
+    private lateinit var menuPlaster: Button
+    private lateinit var menuPenoplex: Button
+    private lateinit var menuPvc: Button
+    private lateinit var menuFloorTile: Button
+    private lateinit var menuMasonry: Button
+    private lateinit var menuCeilingTile: Button
+    private lateinit var menuPlinth: Button
+    private lateinit var menuSelfLeveling: Button
 
     private var currentCalculator = 1
     private var currentLangIndex = 0
@@ -87,11 +103,27 @@ class MainActivity : AppCompatActivity() {
         txtMenuHeader = findViewById(R.id.txtMenuHeader)
         txtSettingsHeader = findViewById(R.id.txtSettingsHeader)
         txtLangLabel = findViewById(R.id.txtLangLabel)
+        
         txtNavHome = findViewById(R.id.txtNavHome)
         txtNavAbout = findViewById(R.id.txtNavAbout)
         txtNavContacts = findViewById(R.id.txtNavContacts)
         txtNavPrivacy = findViewById(R.id.txtNavPrivacy)
         btnToggleTheme = findViewById(R.id.btnToggleTheme)
+
+        // Инициализация кнопок меню
+        menuPutty = findViewById(R.id.menuPutty)
+        menuWallpaper = findViewById(R.id.menuWallpaper)
+        menuPaint = findViewById(R.id.menuPaint)
+        menuColoring = findViewById(R.id.menuColoring)
+        menuCement = findViewById(R.id.menuCement)
+        menuPlaster = findViewById(R.id.menuPlaster)
+        menuPenoplex = findViewById(R.id.menuPenoplex)
+        menuPvc = findViewById(R.id.menuPvc)
+        menuFloorTile = findViewById(R.id.menuFloorTile)
+        menuMasonry = findViewById(R.id.menuMasonry)
+        menuCeilingTile = findViewById(R.id.menuCeilingTile)
+        menuPlinth = findViewById(R.id.menuPlinth)
+        menuSelfLeveling = findViewById(R.id.menuSelfLeveling)
 
         // Меню (бургер)
         findViewById<ImageButton>(R.id.btnMenu).setOnClickListener {
@@ -143,29 +175,28 @@ class MainActivity : AppCompatActivity() {
 
         btnCalculate.setOnClickListener { calculateResult() }
 
-        // Калькуляторы в боковом меню (с закрытием шторки)
-        findViewById<Button>(R.id.menuPutty).setOnClickListener { currentCalculator = 1; setupCalculatorUI(); drawerLayout.closeDrawers() }
-        findViewById<Button>(R.id.menuWallpaper).setOnClickListener { currentCalculator = 2; setupCalculatorUI(); drawerLayout.closeDrawers() }
-        findViewById<Button>(R.id.menuPaint).setOnClickListener { currentCalculator = 3; setupCalculatorUI(); drawerLayout.closeDrawers() }
-        findViewById<Button>(R.id.menuColoring).setOnClickListener { currentCalculator = 4; setupCalculatorUI(); drawerLayout.closeDrawers() }
-        findViewById<Button>(R.id.menuCement).setOnClickListener { currentCalculator = 5; setupCalculatorUI(); drawerLayout.closeDrawers() }
-        findViewById<Button>(R.id.menuPlaster).setOnClickListener { currentCalculator = 6; setupCalculatorUI(); drawerLayout.closeDrawers() }
-        findViewById<Button>(R.id.menuPenoplex).setOnClickListener { currentCalculator = 7; setupCalculatorUI(); drawerLayout.closeDrawers() }
-        findViewById<Button>(R.id.menuPvc).setOnClickListener { currentCalculator = 8; setupCalculatorUI(); drawerLayout.closeDrawers() }
-        findViewById<Button>(R.id.menuFloorTile).setOnClickListener { currentCalculator = 9; setupCalculatorUI(); drawerLayout.closeDrawers() }
-        findViewById<Button>(R.id.menuMasonry).setOnClickListener { currentCalculator = 10; setupCalculatorUI(); drawerLayout.closeDrawers() }
-        findViewById<Button>(R.id.menuCeilingTile).setOnClickListener { currentCalculator = 11; setupCalculatorUI(); drawerLayout.closeDrawers() }
-        findViewById<Button>(R.id.menuPlinth).setOnClickListener { currentCalculator = 12; setupCalculatorUI(); drawerLayout.closeDrawers() }
-        findViewById<Button>(R.id.menuSelfLeveling).setOnClickListener { currentCalculator = 13; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        // Выбор калькуляторов в боковом меню
+        menuPutty.setOnClickListener { currentCalculator = 1; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        menuWallpaper.setOnClickListener { currentCalculator = 2; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        menuPaint.setOnClickListener { currentCalculator = 3; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        menuColoring.setOnClickListener { currentCalculator = 4; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        menuCement.setOnClickListener { currentCalculator = 5; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        menuPlaster.setOnClickListener { currentCalculator = 6; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        menuPenoplex.setOnClickListener { currentCalculator = 7; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        menuPvc.setOnClickListener { currentCalculator = 8; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        menuFloorTile.setOnClickListener { currentCalculator = 9; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        menuMasonry.setOnClickListener { currentCalculator = 10; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        menuCeilingTile.setOnClickListener { currentCalculator = 11; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        menuPlinth.setOnClickListener { currentCalculator = 12; setupCalculatorUI(); drawerLayout.closeDrawers() }
+        menuSelfLeveling.setOnClickListener { currentCalculator = 13; setupCalculatorUI(); drawerLayout.closeDrawers() }
 
         // Нижняя панель навигации
         findViewById<LinearLayout>(R.id.navHome).setOnClickListener { currentCalculator = 1; setupCalculatorUI() }
         findViewById<LinearLayout>(R.id.navAbout).setOnClickListener { showInfoDialog(getLocalizedText("О нас", "About Us", "Biz haqimizda", "Дар бораи мо", "Մեր մասին", "Пра нас", "ჩვენ შესახებ", "Despre noi", "Биз жөнүндө", "Біз туралы"), "Помогатор Строителя — универсальный калькулятор для точного расчёта стройматериалов.") }
         findViewById<LinearLayout>(R.id.navContacts).setOnClickListener { showInfoDialog(getLocalizedText("Контакты", "Contacts", "Aloqa", "Тамос", "Կապ", "Кантакты", "კონტაქტები", "Contacte", "Байланыштар", "Байланыстар"), "Поддержка: almukhametov.rifkat@yandex.ru") }
-        findViewById<LinearLayout>(R.id.navPrivacy).setOnClickListener { showInfoDialog(getLocalizedText("Приваси", "Privacy", "Maxfiylik", "Маҳрамият", "Գաղտնիություն", "Прыватнасць", "კონფიდენციալուრობա", "Confidențialitate", "Купуялуулук", "Құпиялылық"), "Приложение работает офлайн и не собирает личные данные.") }
+        findViewById<LinearLayout>(R.id.navPrivacy).setOnClickListener { showInfoDialog(getLocalizedText("Приваси", "Privacy", "Maxfiylik", "Маҳрамият", "Գաղտնիություն", "Прыватнасць", "კონფიდენციალուრობա", "Confidențialitate", "Купуялуулук", "Құпиялылық"), "Приложение работает офлайн и не собирает личные данные.") }
     }
 
-    // Обработка кнопки "Назад" для подтверждения выхода
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -180,12 +211,8 @@ class MainActivity : AppCompatActivity() {
         AlertDialog.Builder(this)
             .setTitle(title)
             .setMessage(message)
-            .setPositiveButton(yesText) { _, _ ->
-                finishAffinity()
-            }
-            .setNegativeButton(noText) { dialog, _ ->
-                dialog.dismiss()
-            }
+            .setPositiveButton(yesText) { _, _ -> finishAffinity() }
+            .setNegativeButton(noText) { dialog, _ -> dialog.dismiss() }
             .show()
     }
 
@@ -242,11 +269,28 @@ class MainActivity : AppCompatActivity() {
         txtMenuHeader.text = getLocalizedText("Калькуляторы", "Calculators", "Kalkulyatorlar", "Калкуляторҳо", "Հաշվիչներ", "Калькулятары", "კალკულატორები", "Calculatoare", "Калькуляторлор", "Калькуляторлар")
         txtSettingsHeader.text = getLocalizedText("НАСТРОЙКИ", "SETTINGS", "SOZLAMALAR", "ТАНЗИМОТ", "ԿԱՐԳԱՎՈՐՈՒՄՆԵՐ", "НАЛАДКІ", "პარამეტრები", "SETĂRI", "ЖӨНӨТҮҮЛӨР", "ПАРАМЕТРЛЕР")
         txtLangLabel.text = getLocalizedText("Язык интерфейса", "Language", "Interfeys tili", "Забони интерфейс", "Լեզու", "Мова інтэрфейсу", "ინტერფეისის ენა", "Limba interfeței", "Интерфейс тили", "Интерфейс тілі")
+        
         txtNavHome.text = getLocalizedText("Домой", "Home", "Bosh sahifa", "Асосӣ", "Գլխավոր", "Дадому", "მთავარი", "Acasă", "Башкы", "Басты")
         txtNavAbout.text = getLocalizedText("О нас", "About Us", "Biz haqimizda", "Дар бораи мо", "Մեր մասին", "Пра нас", "ჩვენ შესახებ", "Despre noi", "Биз жөнүндө", "Біз туралы")
         txtNavContacts.text = getLocalizedText("Контакты", "Contacts", "Aloqa", "Тамос", "Կապ", "Кантакты", "კონტაქტები", "Contacte", "Байланыштар", "Байланыстар")
         txtNavPrivacy.text = getLocalizedText("Приваси", "Privacy", "Maxfiylik", "Маҳрамият", "Գաղտնիություն", "Прыватнасць", "კონფიდენციալուრობա", "Confidențialitate", "Купуялуулук", "Құпиялылық")
         btnCalculate.text = getLocalizedText("Рассчитать", "Calculate", "Hisoblash", "Ҳисоб кардан", "Հաշվել", "Разлічыць", "გამოთვლა", "Calculează", "Эсептөө", "Есептеу")
+
+        // Перевод пунктов бокового меню
+        menuPutty.text = getLocalizedText("Шпаклёвка", "Putty", "Shpaklyovka", "Шпаклёвка", "Շպակլովկա", "Шпаклёўка", "შპაკლი", "Șpaclu", "Шпаклевка", "Шпаклевка")
+        menuWallpaper.text = getLocalizedText("Обои по стенам", "Wallpaper", "Oboy", "Девори обоӣ", "Պաստառներ", "Шпалеры", "შპალერი", "Tapet", "Обои", "Тұсқағаз")
+        menuPaint.text = getLocalizedText("Краска (все виды)", "Paint", "Bo'yoq", "Ранг", "Ներկ", "Фарба", "საღებავი", "Vopsea", "Боёк", "Боя")
+        menuColoring.text = getLocalizedText("Колеровка", "Coloring", "Kolerovka", "Колеровка", "Գունավորում", "Калероўка", "ფერწერა", "Colorare", "Түстөө", "Бояу")
+        menuCement.text = getLocalizedText("Цемент и песок", "Cement & Sand", "Sement va qum", "Семент ва қум", "Ցեմենտ և ավազ", "Цэмент і пясок", "ცემენტი და ქვიშა", "Ciment și nisip", "Цемент жана кум", "Цемент пен құм")
+        menuPlaster.text = getLocalizedText("Декоративная штукатурка", "Decorative Plaster", "Dekorativ suvoq", "Сувоқи озорӣ", "Դեկորատիվ սվաղ", "Дэкаратыўная тынкоўка", "დეკორატიული შელესვა", "Tencuială decorativă", "Декоративдик суак", "Декоративті сылақ")
+        menuPenoplex.text = getLocalizedText("Обшивка пеноплексом", "Penoplex Insulation", "Penoplex qoplami", "Пеноплекс", "Пенопլեքս", "Пенәплекс", "პენოპლექსი", "Izolație Penoplex", "Пеноплекс жылуулоо", "Пеноплекс жылылау")
+        menuPvc.text = getLocalizedText("ПВХ панели", "PVC Panels", "PVX panellar", "Панелҳои ПВХ", "ՊՎԽ պանելներ", "ПВХ панэлі", "პვხ პანელები", "Panouri PVC", "ПВХ панелдери", "ПВХ панельдері")
+        menuFloorTile.text = getLocalizedText("Напольная плитка", "Floor Tile", "Pol plitkasi", "Плиткаи фарш", "Հատակի սալիկ", "Налогавая плітка", "იატაკის ფილა", "Gresie", "Пол плиткасы", "Еден плиткасы")
+        menuMasonry.text = getLocalizedText("Кладка блоков и кирпича", "Masonry", "G'isht terish", "Девори хишт", "Աղյուսե շարվածք", "Мураванне", "აგურის წყობა", "Zidărie", "Кыш дубал", "Кірпіш қалау")
+        menuCeilingTile.text = getLocalizedText("Потолочная плитка", "Ceiling Tile", "Shift plitkasi", "Плиткаи шифт", "Առաստաղի սալիկ", "Стальная плітка", "ჭერის ფილა", "Plafon", "Шып плиткасы", "Төбе плиткасы")
+        menuPlinth.text = getLocalizedText("Плинтус", "Plinth", "Plintus", "Плинтус", "Շրջանակ", "Плінтус", "პლინტუსი", "Pervaz", "Плинтус", "Плинтус")
+        menuSelfLeveling.text = getLocalizedText("Наливной пол / Стяжка", "Self-Leveling Floor", "Quymalov pol", "Фарши рехта", "Լցնովի հատակ", "Наліўная падлога", "თვითგასწორებელი", "Pardoseală turnată", "Куюлучу пол", "Төгілетін еден")
+
         setupCalculatorUI()
     }
 
@@ -256,6 +300,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupCalculatorUI() {
         txtResult.visibility = View.GONE
+        
+        // По умолчанию показываем все поля, далее скрываем лишние в зависимости от калькулятора
         inputThickness.visibility = View.VISIBLE
         inputBagWeight.visibility = View.VISIBLE
         lblParam3.visibility = View.VISIBLE
@@ -294,85 +340,89 @@ class MainActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerType.adapter = adapter
 
+        // Настройка названий и видимости полей в зависимости от выбранного калькулятора
         when (currentCalculator) {
-            1 -> {
-                calcTitle.text = getLocalizedText("Шпаклёвка", "Putty", "Shpaklyovka", "Шпаклёвка", "Շպակլովկա", "Шпаклёўка", "შპაკლი", "Șpaclui", "Шпаклевка", "Шпаклевка")
-                calcSubtitle.text = getLocalizedText("Расчёт расхода шпаклёвки по типу смеси и площади", "Calculate putty consumption", "Aralashma turi va maydoni bo'yicha hisob", "Ҳисоби шпаклёвка", "Շպակլովկայի հաշվարկ", "Разлік шпаклёўкі", "შპაკლის ხარჯი", "Calculul șpaclului", "Шпаклевка чыгымы", "Шпаклевка шығыны")
+            1 -> { // Шпаклёвка
+                calcTitle.text = getLocalizedText("Шпаклёвка", "Putty", "Shpaklyovka", "Шпаклёвка", "Շպակլովկա", "Шпаклёўка", "შპაკლი", "Șpaclu", "Шпаклевка", "Шпаклевка")
+                calcSubtitle.text = getLocalizedText("Расчёт расхода шпаклёвки по типу и площади", "Calculate putty consumption", "Aralashma turi va maydoni", "Ҳисоби шпаклёвка", "Շպակլովկայի հաշվարկ", "Разлік шпаклёўкі", "შპაკლის ხარჯი", "Calculul șpaclului", "Шпаклевка чыгымы", "Шпаклевка шығыны")
                 lblParam1.text = getLocalizedText("Вид шпаклёвки", "Putty type", "Shpaklyovka turi", "Намуди шпаклёвка", "Շպակլովկայի տեսակ", "Від шпаклёўкі", "შპაკლის ტიპი", "Tipul șpaclului", "Шпаклевка түрү", "Шпаклевка түрі")
-                lblParam2.text = getLocalizedText("Площадь стен (м²)", "Wall area (m²)", "Devor maydoni (m²)", "Масоҳати девор (м²)", "Պատերի մակերես (մ²)", "Плошча сцен (м²)", "კედლების ფართობი (მ²)", "Suprafața pereților (m²)", "Дубал аянты (м²)", "Қабырға алаңы (м²)")
+                lblParam2.text = getLocalizedText("Площадь стен (м²)", "Wall area (m²)", "Devor maydoni (m²)", "Масоҳати девор (м²)", "Պատերի մակերես (մ²)", "Плошча сцен (м²)", "კედლების ფართობი (მ²)", "Suprafața pereților (m²)", "Дубал аянты (m²)", "Қабырға алаңы (m²)")
+                lblParam3.text = getLocalizedText("Толщина слоя (мм)", "Layer thickness (mm)", "Qatlam qalinligi (mm)", "Ғафсии қабат (мм)", "Շերտի հաստություն (մմ)", "Таўшчыня слоя (мм)", "ფენის სქщина (მმ)", "Grosimea stratului (mm)", "Калыңдыгы (мм)", "Қалыңдығы (мм)")
+                lblParam4.text = getLocalizedText("Вес мешка (кг)", "Bag weight (kg)", "Qop og'irligi (kg)", "Вазни халта (кг)", "Պարկի քաշ (կգ)", "Вага мяшка (кг)", "ტექნიკური წონა (კგ)", "Greutatea sacului (kg)", "Кабык салмагы (кг)", "Қап салмағы (кг)")
             }
-            2 -> {
-                calcTitle.text = getLocalizedText("Обои по стенам", "Wallpaper", "Oboy", "Коғазӣ девор", "Պաստառ", "Шпалеры", "შპალერი", "Tapet", "Обои", "Тұсқағаз")
-                calcSubtitle.text = getLocalizedText("Расчёт рулонов обоев по периметру и высоте", "Calculate wallpaper rolls", "Oboy rulonlarini hisoblash", "Ҳисоби рулонҳои обой", "Պաստառների հաշվարկ", "Разлік рулонаў шпалер", "შპალერის რულონების ხარჯი", "Calculul tapetului", "Обои эсептөө", "Тұсқағаз есептеу")
+            2 -> { // Обои
+                calcTitle.text = getLocalizedText("Обои по стенам", "Wallpaper", "Oboy", "Девори обоӣ", "Պաստառներ", "Шпалеры", "შპალერი", "Tapet", "Обои", "Тұсқағаз")
+                calcSubtitle.text = getLocalizedText("Расчёт рулонов обоев по периметру", "Calculate wallpaper rolls", "Oboy rulonlarini hisoblash", "Ҳисоби рулонҳои обой", "Պաստառների հաշվարկ", "Разлік рулонаў", "შპალერის რულონები", "Calculul tapetului", "Обои эсептөө", "Тұсқағаз есептеу")
                 lblParam1.text = getLocalizedText("Тип рулона", "Roll type", "Rulon turi", "Намуди рулон", "Ռուլոնի տեսակ", "Тып рулона", "რულონის ტიპი", "Tipul rolei", "Рулон түрү", "Рулон түрі")
                 lblParam2.text = getLocalizedText("Периметр комнаты (м)", "Room perimeter (m)", "Xona perimetri (m)", "Периметри хона (м)", "Սենյակի պարագիծ (մ)", "Перыметр пакоя (м)", "ოთახის პერიმეტრი (მ)", "Perimetrul camerei (m)", "Бөлмө периметри (м)", "Бөлме периметрі (м)")
+                lblParam3.text = getLocalizedText("Высота потолка (м)", "Ceiling height (m)", "Shift balandligi (m)", "Балландии шифт (м)", "Առաստաղի բարձրություն (մ)", "Вышыня столі (м)", "ჭერის სიმაღლე (მ)", "Înălțimea tavanului (m)", "Шып бийиктиги (m)", "Төбе биіктігі (m)")
+                inputThickness.setText("2.7")
+                inputBagWeight.visibility = View.GONE
+                lblParam4.visibility = View.GONE
             }
-            3 -> {
+            3 -> { // Краска
                 calcTitle.text = getLocalizedText("Краска (все виды)", "Paint", "Bo'yoq", "Ранг", "Ներկ", "Фарба", "საღებავი", "Vopsea", "Боёк", "Боя")
-                calcSubtitle.text = getLocalizedText("Расчёт литров краски по площади и слоям", "Calculate paint liters", "Bo'yoq sarfini hisoblash", "Ҳисоби рангубори девор", "Ներկի հաշվարկ", "Разлік фарбы", "საღებავის ხარჯი", "Calculul vopselei", "Боёк чыгымы", "Боя шығыны")
+                calcSubtitle.text = getLocalizedText("Расчёт литров краски", "Calculate paint liters", "Bo'yoq sarfini hisoblash", "Ҳисоби ранг", "Ներկի հաշվարկ", "Разлік фарбы", "საღებავის ხარჯი", "Calculul vopselei", "Боёк чыгымы", "Боя шығыны")
                 lblParam1.text = getLocalizedText("Вид краски", "Paint type", "Bo'yoq turi", "Намуди ранг", "Ներկի տեսակ", "Від фарбы", "საღებავის ტიპი", "Tipul vopselei", "Боёк түрү", "Боя түрі")
                 lblParam2.text = getLocalizedText("Площадь покраски (м²)", "Painting area (m²)", "Bo'yash maydoni (m²)", "Масоҳати рангкунӣ (м²)", "Ներկման մակերես (մ²)", "Плошча фарбавання (м²)", "საღებავის ფართობი (მ²)", "Suprafața vopsită (m²)", "Боёк аянты (m²)", "Боялау алаңы (m²)")
+                lblParam3.text = getLocalizedText("Количество слоев", "Number of coats", "Qatlamlar soni", "Миқдори қабатҳо", "Շերտերի քանակ", "Колькасць слаёў", "ფენების რაოდენობა", "Numărul de straturi", "Кабат саны", "Қабат саны")
+                inputThickness.setText("2")
+                inputBagWeight.visibility = View.GONE
+                lblParam4.visibility = View.GONE
             }
-            4 -> {
+            4 -> { // Колеровка
                 calcTitle.text = getLocalizedText("Колеровка", "Coloring", "Kolerovka", "Колеровка", "Գունավորում", "Калероўка", "ფერწერა", "Colorare", "Түстөө", "Бояу")
-                calcSubtitle.text = getLocalizedText("Расчёт пигмента для колеровки краски", "Calculate pigment volume", "Kolerovka pigmentini hisoblash", "Ҳисоби рангги пигмент", "Գունավորման հաշվարկ", "Разлік пігмента", "პიგმენტის გამოთვლა", "Calculul pigmentului", "Пигмент эсептөө", "Пигмент есептеу")
+                calcSubtitle.text = getLocalizedText("Расчёт пигмента для колеровки", "Calculate pigment", "Kolerovka pigmentini hisoblash", "Ҳисоби пигмент", "Գունավորման հաշվարկ", "Разлік пігмента", "პიგმენტის გამოთვლა", "Calculul pigmentului", "Пигмент эсептөө", "Пигмент есептеу")
                 lblParam1.text = getLocalizedText("Интенсивность", "Intensity", "Intensivlik", "Шиддатнокӣ", "Ինտենսիվություն", "Інтэнсіўнасць", "ინტენსივობა", "Intensitate", "Интенсивдүүлүк", "Интенсивтілік")
                 lblParam2.text = getLocalizedText("Объём базы (л)", "Base volume (l)", "Asos hajmi (l)", "Ҳаҷми асос (л)", "Հիմքի ծավալ (լ)", "Аб'ём базы (л)", "ბაზის მოცულობა (ლ)", "Volumul bazei (l)", "База көлөмү (l)", "База көлемі (л)")
+                inputThickness.visibility = View.GONE
+                inputBagWeight.visibility = View.GONE
+                lblParam3.visibility = View.GONE
+                lblParam4.visibility = View.GONE
             }
-            5 -> {
+            5 -> { // Цемент и песок
                 calcTitle.text = getLocalizedText("Цемент и песок", "Cement and Sand", "Sement va qum", "Семент ва қум", "Ցեմենտ և ավազ", "Цэмент і пясок", "ცემენტი და ქვიშა", "Ciment și nisip", "Цемент жана кум", "Цемент пен құм")
-                calcSubtitle.text = getLocalizedText("Расчёт пропорций цементного раствора", "Calculate mortar proportions", "Sement qorishmasi proporsiyasi", "Ҳисоби маҳлули семент", "Ցեմենտի շաղախի հաշվարկ", "Разлік раствора цэменту", "ცემენტის ხსნარის გამოთვლა", "Calculul mortarului", "Цемент эритмеси", "Цемент ерітіндісі")
+                calcSubtitle.text = getLocalizedText("Расчёт пропорций раствора", "Calculate mortar proportions", "Qorishma proporsiyasi", "Ҳисоби маҳлул", "Շաղախի հաշվարկ", "Разлік раствора", "ხსნარის გამოთვლა", "Calculul mortarului", "Эритме эсептөө", "Ерітінді есептеу")
                 lblParam1.text = getLocalizedText("Марка раствора", "Mortar grade", "Qorishma markasi", "Маркаи маҳлул", "Շաղախի մարկա", "Марка раствора", "ხსნარის მარკა", "Marca mortarului", "Эритме маркасы", "Ерітінді маркасы")
                 lblParam2.text = getLocalizedText("Объём раствора (м³)", "Mortar volume (m³)", "Qorishma hajmi (m³)", "Ҳаҷми маҳлул (м³)", "Շաղախի ծավալ (մ³)", "Аб'ём раствора (м³)", "ხსნარის მოცულობა (მ³)", "Volumul mortarului (m³)", "Эритме көлөмү (м³)", "Ерітінді көлемі (м³)")
+                inputThickness.visibility = View.GONE
+                inputBagWeight.visibility = View.GONE
+                lblParam3.visibility = View.GONE
+                lblParam4.visibility = View.GONE
             }
-            6 -> {
-                calcTitle.text = getLocalizedText("Декоративная штукатурка", "Decorative Plaster", "Dekorativ suvoq", "Сувоқи о تزинӣ", "Դեկորատիվ սվաղ", "Дэкаратыўная тынкоўка", "დეკორატივი შელესვა", "Tencuială decorativă", "Декоративдик суак", "Декоративті сылақ")
-                calcSubtitle.text = getLocalizedText("Расчёт декоративной штукатурки", "Calculate decorative plaster", "Dekorativ suvoq sarfi", "Ҳисоби сувоқи отичӣ", "Դեկորատիվ սվաղի հաշվարկ", "Разлік тынкоўкі", "დეკორატიული შელესვის ხარჯი", "Calculul tencuielii", "Суак чыгымы", "Сылақ шығыны")
+            6 -> { // Штукатурка
+                calcTitle.text = getLocalizedText("Декоративная штукатурка", "Decorative Plaster", "Dekorativ suvoq", "Сувоқи озорӣ", "Դեկորատիվ սվաղ", "Дэкаратыўная тынкоўка", "დეკორატიული შელესვა", "Tencuială decorativă", "Декоративдик суак", "Декоративті сылақ")
+                calcSubtitle.text = getLocalizedText("Расчёт штукатурки по площади", "Calculate plaster", "Suvoq sarfi", "Ҳисоби сувоқ", "Սվաղի հաշվարկ", "Разлік тынкоўкі", "შელესვის ხარჯი", "Calculul tencuielii", "Суак чыгымы", "Сылақ шығыны")
                 lblParam1.text = getLocalizedText("Тип штукатурки", "Plaster type", "Suvoq turi", "Намуди сувоқ", "Սվաղի տեսակ", "Тып тынкоўкі", "შელესვის ტიპი", "Tipul tencuielii", "Суак түрү", "Сылақ түрі")
-                lblParam2.text = getLocalizedText("Площадь стен (м²)", "Wall area (m²)", "Devor maydoni (m²)", "Масоҳати девор (м²)", "Պատերի մակերես (մ²)", "Плошча сцен (м²)", "კედლების ფართობი (მ²)", "Suprafața pereților (m²)", "Дубал аянты (m²)", "Қабырға алаңы (m²)")
+                lblParam2.text = getLocalizedText("Площадь стен (m²)", "Wall area (m²)", "Devor maydoni (m²)", "Масоҳати девор (м²)", "Պատերի մակերես (մ²)", "Плошча сцен (m²)", "კედლების ფართობი (მ²)", "Suprafața pereților (m²)", "Дубал аянты (m²)", "Қабырға алаңы (m²)")
+                inputThickness.visibility = View.GONE
+                inputBagWeight.visibility = View.GONE
+                lblParam3.visibility = View.GONE
+                lblParam4.visibility = View.GONE
             }
-            7 -> {
-                calcTitle.text = getLocalizedText("Обшивка пеноплексом", "Penoplex Insulation", "Penoplex qoplami", "Пеноплекс", "Пенопլեքս", "Пенаплекс", "პენოპლექსი", "Izolație Penoplex", "Пеноплекс жылуулоо", "Пеноплекс жылылау")
-                calcSubtitle.text = getLocalizedText("Расчёт листов утеплителя", "Calculate insulation boards", "Isolyatsiya plitalari", "Ҳисоби плитаҳои гармидиҳӣ", "Ջերմամեկուսացման հաշվարկ", "Разлік ізаляцыі", "თბოიზოლაციის გამოთვლა", "Calculul izolației", "Жылуулоо эсептөө", "Жылылау есептеу")
-                lblParam1.text = getLocalizedText("Толщина листа", "Sheet thickness", "Plita qalinligi", "Ғафсии плита", "Սալի հաստություն", "Таўшчыня ліста", "ფურცლის სქщина", "Grosimea foii", "Калыңдыгы", "Қалыңдығы")
-                lblParam2.text = getLocalizedText("Площадь утепления (м²)", "Insulation area (m²)", "Isitish maydoni (m²)", "Масоҳати гармидиҳӣ (м²)", "Մեկուսացման մակերես (մ²)", "Плошча ізаляцыі (м²)", "იზოლაციის ფართობი (მ²)", "Suprafața izolației (m²)", "Жылуулоо аянты (m²)", "Жылылау алаңы (m²)")
+            7, 8, 9, 10, 11, 12, 13 -> { // Остальные калькуляторы (Пеноплекс, ПВХ, Плитка, Кладка, Потолок, Плинтус, Стяжка)
+                calcTitle.text = menuGetTitle(currentCalculator)
+                calcSubtitle.text = getLocalizedText("Профессиональный расчёт параметров", "Professional calculation", "Professional hisob-kitob", "Ҳисобот", "Հաշվարկ", "Разлік", "გამოთვლა", "Calcul", "Эсептөө", "Есептеу")
+                lblParam1.text = getLocalizedText("Тип материала", "Material type", "Material turi", "Намуди мавод", "Նյութի տեսակ", "Тып матэрыялу", "მასალის ტიპი", "Tipul materialului", "Материал түрү", "Материал түрі")
+                lblParam2.text = getLocalizedText("Площадь / Периметр (м² / м)", "Area / Perimeter", "Maydoni / Perimetri", "Масоҳат", "Մակերես / Պարագիծ", "Плошча / Перымэтр", "ფართობი / პერიმეტრი", "Suprafață / Perimetru", "Аянт / Периметр", "Алаңы / Периметрі")
+                inputThickness.visibility = View.GONE
+                inputBagWeight.visibility = View.GONE
+                lblParam3.visibility = View.GONE
+                lblParam4.visibility = View.GONE
             }
-            8 -> {
-                calcTitle.text = getLocalizedText("ПВХ панели", "PVC Panels", "PVX panellar", "Панелҳои ПВХ", "ՊՎԽ պանելներ", "ПВХ панэлі", "პვხ პანელები", "Panouri PVC", "ПВХ панелдери", "ПВХ панельдері")
-                calcSubtitle.text = getLocalizedText("Расчёт стеновых ПВХ панелей", "Calculate PVC panels", "PVX panellarini hisoblash", "Ҳисоби панелҳо", "ՊՎԽ պանելների հաշվարկ", "Разлік панэляў ПВХ", "პვხ პანელების ხარჯი", "Calculul panourilor PVC", "ПВХ панелдер", "ПВХ панельдері")
-                lblParam1.text = getLocalizedText("Ширина панели", "Panel width", "Panel kengligi", "Паҳнои панел", "Պանելի լայնություն", "Шырыня панэлі", "პანელის სიგანე", "Lățimea panoului", "Панель туурасы", "Панель ені")
-                lblParam2.text = getLocalizedText("Площадь стен (м²)", "Wall area (m²)", "Devor maydoni (m²)", "Масоҳати девор (м²)", "Պատերի մակերես (մ²)", "Плошча сцен (м²)", "კედლების ფართობი (მ²)", "Suprafața pereților (m²)", "Дубал аянты (m²)", "Қабырға алаңы (m²)")
-            }
-            9 -> {
-                calcTitle.text = getLocalizedText("Напольная плитка", "Floor Tile", "Polsiz plitka", "Плиткаи фарш", "Հատակի սալիկ", "Налогавая плітка", "იატაკის ფილა", "Gresie", "Пол плиткасы", "Еден плиткасы")
-                calcSubtitle.text = getLocalizedText("Расчёт плитки на пол с запасом", "Calculate floor tiles", "Pol plitkasi hisobi", "Ҳисоби плиткаи фарш", "Հատակի սալիկի հաշվարկ", "Разлік пліткі", "იატაკის ფილების გამოთვლა", "Calculul gresiei", "Плитка эсептөө", "Плитка есептеу")
-                lblParam1.text = getLocalizedText("Способ укладки", "Laying method", "Yotqizish usuli", "Тарзи хобондан", "Տեղադրման եղանակ", "Спосаб кладкі", "დაგების მეთოდი", "Metoda de montaj", "Төшөө ыкмасы", "Төсеу әдісі")
-                lblParam2.text = getLocalizedText("Площадь пола (м²)", "Floor area (m²)", "Pol maydoni (m²)", "Масоҳати фарш (м²)", "Հատակի մակերես (մ²)", "Плошча падлогі (м²)", "იატაკის ფართობი (მ²)", "Suprafața podelei (m²)", "Пол аянты (m²)", "Еден алаңы (m²)")
-            }
-            10 -> {
-                calcTitle.text = getLocalizedText("Кладка блоков и кирпича", "Masonry", "G‘isht terish", "Девори хишт", "Աղյուսե շարվածք", "Мураванне", "აგურის წყობა", "Zidărie", "Кыш дубал", "Кірпіш қалау")
-                calcSubtitle.text = getLocalizedText("Расчёт количества блоков или кирпича", "Calculate masonry blocks", "G'ishtlar sonini hisoblash", "Ҳисоби хиштҳо", "Աղյուսների հաշվարկ", "Разлік цэглы", "აგურის რაოდენობა", "Calculul cărămizilor", "Кыш саны", "Кірпіш саны")
-                lblParam1.text = getLocalizedText("Материал", "Material", "Material", "Мавод", "Նյութ", "Матэрыял", "მასალა", "Material", "Материал", "Материал")
-                lblParam2.text = getLocalizedText("Площадь кладки (м²)", "Masonry area (m²)", "Terish maydoni (m²)", "Масоҳати девор (м²)", "Շարվածքի մակերես (մ²)", "Плошча мура (м²)", "წყობის ფართობი (მ²)", "Suprafața zidăriei (m²)", "Дубал аянты (m²)", "Қабырға алаңы (m²)")
-            }
-            11 -> {
-                calcTitle.text = getLocalizedText("Потолочная плитка", "Ceiling Tile", "Shift plitkasi", "Плиткаи шифт", "Առաստաղի սալիկ", "Столная плітка", "ჭერის ფილა", "Plafon", "Шып плиткасы", "Төбе плиткасы")
-                calcSubtitle.text = getLocalizedText("Расчёт плитки на потолок", "Calculate ceiling tiles", "Shift plitkasi hisobi", "Ҳисоби плиткаи шифт", "Առաստաղի սալիկի հաշվարկ", "Разлік стольнай пліткі", "ჭერის ფილების გამოთვლა", "Calculul plafonului", "Шып плитка эсептөө", "Төбе плиткасын есептеу")
-                lblParam1.text = getLocalizedText("Размер плитки", "Tile size", "Plitka o'lchami", "Андозаи плитка", "Սալիկի չափս", "Памер пліткі", "ფილის ზომა", "Dimensiunea plăcii", "Плитка өлчөмү", "Плитка өлшемі")
-                lblParam2.text = getLocalizedText("Площадь потолка (м²)", "Ceiling area (m²)", "Shift maydoni (m²)", "Масоҳати шифт (м²)", "Առաստաղի մակերես (մ²)", "Плошча столі (м²)", "ჭერის ფართობი (მ²)", "Suprafața tavanului (m²)", "Шып аянты (m²)", "Төбе алаңы (m²)")
-            }
-            12 -> {
-                calcTitle.text = getLocalizedText("Плинтус", "Plinth / Skirting", "Plintus", "Плинтус", "Շրջանակ", "Плінтус", "პლინტუსი", "Pervaz", "Плинтус", "Плинтус")
-                calcSubtitle.text = getLocalizedText("Расчёт длины плинтусов с обрезкой", "Calculate skirting board", "Plintus uzunligini hisoblash", "Ҳисоби плинтус", "Շրջանակների հաշվարկ", "Разлік плінтуса", "პლინტუსის გამოთვლა", "Calculul plintelor", "Плинтус эсептөө", "Плинтус есептеу")
-                lblParam1.text = getLocalizedText("Длина палки", "Bar length", "Xoda uzunligi", "Дарозии чӯб", "Ձողի երկարություն", "Даўжыня планкі", "ზოლის სიგრძე", "Lungimea barei", "Узундугу", "Ұзындығы")
-                lblParam2.text = getLocalizedText("Периметр комнаты (м)", "Room perimeter (m)", "Xona perimetri (m)", "Периметри хона (м)", "Սենյակի պարագիծ (մ)", "Перыметр пакоя (m)", "ოთახის პერიმეტრი (მ)", "Perimetrul camerei (m)", "Бөлмө периметри (м)", "Бөлме периметрі (м)")
-            }
-            13 -> {
-                calcTitle.text = getLocalizedText("Наливной пол / Стяжка", "Self-Leveling Floor", "Quymalov pol / Stiajka", "Фарши рехта", "Լցնովի հատակ", "Наліўная падлога", "თვითგასწორებელი იატაკი", "Pardoseală turnată", "Куюлучу пол", "Төгілетін еден")
-                calcSubtitle.text = getLocalizedText("Расчёт сухой смеси для стяжки пола", "Calculate self-leveling mix", "Stiajka uchun quruq qorishma", "Ҳисоби омехтаи стяжка", "Հատակի հավասարեցման հաշվարկ", "Разлік сухой сумесі", "იატაკის стяжка", "Calculul șapei", "Стяжка эсептөө", "Стяжка есептеу")
-                lblParam1.text = getLocalizedText("Тип стяжки", "Screed type", "Stiajka turi", "Намуди стяжка", "Հավասարեցման տեսակ", "Тып сцяжкі", "стяжки ტიპი", "Tipul șapei", "Стяжка түрү", "Стяжка түрі")
-                lblParam2.text = getLocalizedText("Площадь пола (м²)", "Floor area (m²)", "Pol maydoni (m²)", "Масоҳати фарш (м²)", "Հատակի մակերես (մ²)", "Плошча падлогі (м²)", "იატაკის ფართობი (მ²)", "Suprafața podelei (m²)", "Пол аянты (m²)", "Еден алаңы (m²)")
-            }
+        }
+    }
+
+    private fun menuGetTitle(calcId: Int): String {
+        return when(calcId) {
+            7 -> getLocalizedText("Обшивка пеноплексом", "Penoplex Insulation", "Penoplex qoplami", "Пеноплекс", "Пенопլեքս", "Пенаплекс", "პენოპლექსი", "Izolație Penoplex", "Пеноплекс жылуулоо", "Пеноплекс жылылау")
+            8 -> getLocalizedText("ПВХ панели", "PVC Panels", "PVX panellar", "Панелҳои ПВХ", "ՊՎԽ պանելներ", "ПВХ панэлі", "პვხ პანელები", "Panouri PVC", "ПВХ панелдери", "ПВХ панельдері")
+            9 -> getLocalizedText("Напольная плитка", "Floor Tile", "Pol plitkasi", "Плиткаи фарш", "Հատակի սալիկ", "Налогавая плітка", "იატაკის ფილა", "Gresie", "Пол плиткасы", "Еден плиткасы")
+            10 -> getLocalizedText("Кладка блоков и кирпича", "Masonry", "G'isht terish", "Девори хишт", "Աղյուսե շարվածք", "Мураванне", "აგურის წყობა", "Zidărie", "Кыш дубал", "Кірпіш қалау")
+            11 -> getLocalizedText("Потолочная плитка", "Ceiling Tile", "Shift plitkasi", "Плиткаи шифт", "Առաստաղի սալիկ", "Стальная плітка", "ჭერის ფილა", "Plafon", "Шып плиткасы", "Төбе плиткасы")
+            12 -> getLocalizedText("Плинтус", "Plinth", "Plintus", "Плинтус", "Շրջանակ", "Плінтус", "პლინტუსი", "Pervaz", "Плинтус", "Плинтус")
+            13 -> getLocalizedText("Наливной пол / Стяжка", "Self-Leveling Floor", "Quymalov pol", "Фарши рехта", "Լցնովի հատակ", "Наліўная падлога", "თვითგასწორებელი", "Pardoseală turnată", "Куюлучу пол", "Төгілетін еден")
+            else -> "Калькулятор"
         }
     }
 
@@ -381,11 +431,36 @@ class MainActivity : AppCompatActivity() {
         val val2 = inputThickness.text.toString().toDoubleOrNull() ?: 0.0
         val val3 = inputBagWeight.text.toString().toDoubleOrNull() ?: 1.0
 
-        val totalKg = val1 * val2 * 1.2
-        val bags = Math.ceil(totalKg / val3).toInt()
+        val resultText = when (currentCalculator) {
+            1 -> {
+                val totalKg = val1 * val2 * 1.2
+                val bags = Math.ceil(totalKg / val3).toInt()
+                "Расход: %.1f кг\nМешков (по %.0f кг): %d шт.".format(totalKg, val3, bags)
+            }
+            2 -> {
+                val rolls = Math.ceil((val1 * val2) / 5.0).toInt()
+                "Требуется рулонов (прим.): %d шт.".format(rolls)
+            }
+            3 -> {
+                val liters = val1 * 0.12 * val2
+                "Требуется краски: %.1f литров".format(liters)
+            }
+            4 -> {
+                val pigment = val1 * 0.03
+                "Требуется пигмента: %.2f литров".format(pigment)
+            }
+            5 -> {
+                val cementKg = val1 * 350.0
+                "Цемента М400: %.1f кг\nПеска: %.1f м³".format(cementKg, val1 * 0.9)
+            }
+            else -> {
+                val total = val1 * 1.15
+                "Итого с запасом 15%:\n%.2f единиц (м² / шт.)".format(total)
+            }
+        }
 
         txtResult.visibility = View.VISIBLE
-        txtResult.text = "Расход: %.1f кг\nМешков (по %.0f кг): %d шт.".format(totalKg, val3, bags)
+        txtResult.text = resultText
     }
 
     private fun showInfoDialog(title: String, message: String) {
