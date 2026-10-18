@@ -20,10 +20,19 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: 3. Сборка Debug APK с помощью Gradle
-      run: gradle assembleDebug
+    - name: 3. Установка Gradle в систему
+      run: sudo apt-get update && sudo apt-get install -y gradle
 
-    - name: 4. Сохранение собранного APK
+    - name: 4. Автоматическая генерация Gradle Wrapper
+      run: gradle wrapper
+
+    - name: 5. Выдача прав на выполнение
+      run: chmod +x gradlew
+
+    - name: 6. Сборка Debug APK
+      run: ./gradlew assembleDebug
+
+    - name: 7. Сохранение готового APK
       uses: actions/upload-artifact@v4
       with:
         name: BuilderHelper-Debug-APK
