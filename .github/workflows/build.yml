@@ -12,27 +12,24 @@ jobs:
 
     steps:
     - name: 1. Клонирование репозитория
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: 2. Настройка Java (JDK 17)
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: 3. Установка Gradle в систему
+    - name: 3. Установка Gradle
       run: sudo apt-get update && sudo apt-get install -y gradle
 
-    - name: 4. Автоматическая генерация Gradle Wrapper
+    - name: 4. Создание Gradle Wrapper
       run: gradle wrapper
 
-    - name: 5. Выдача прав на выполнение
-      run: chmod +x gradlew
-
-    - name: 6. Сборка Debug APK
+    - name: 5. Сборка Debug APK
       run: ./gradlew assembleDebug
 
-    - name: 7. Сохранение готового APK
+    - name: 6. Сохранение готового APK
       uses: actions/upload-artifact@v4
       with:
         name: BuilderHelper-Debug-APK
