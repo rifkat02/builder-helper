@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Помогатор строителя</string>
+    <string name="nav_home">Главная</string>
+    <string name="nav_about">О нас</string>
+    <string name="nav_privacy">Политика конфиденциальности</string>
+    <string name="share_text">Скачай приложение «Помогатор строителя» — все калькуляторы материалов и замеров в одном месте!</string>
+</resources>
