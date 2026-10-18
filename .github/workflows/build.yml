@@ -24,7 +24,7 @@ jobs:
           unzip -q gradle-8.5-bin.zip
           echo "$PWD/gradle-8.5/bin" >> $GITHUB_PATH
 
-      - name: 4. Подготовка папки и декодирование ключа
+      - name: 4. Декодирование релизного ключа
         run: |
           mkdir -p app
           echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 --decode > app/my-release-key.jks
@@ -36,10 +36,10 @@ jobs:
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: |
           gradle assembleRelease \
-            -Pandroid.injected.signing.store.file=my-release-key.jks \
-            -Pandroid.injected.signing.store.password=$RELEASE_STORE_PASSWORD \
-            -Pandroid.injected.signing.key.alias=$RELEASE_KEY_ALIAS \
-            -Pandroid.injected.signing.key.password=$RELEASE_KEY_PASSWORD
+            -Pandroid.injected.signing.store.file="$PWD/app/my-release-key.jks" \
+            -Pandroid.injected.signing.store.password="$RELEASE_STORE_PASSWORD" \
+            -Pandroid.injected.signing.key.alias="$RELEASE_KEY_ALIAS" \
+            -Pandroid.injected.signing.key.password="$RELEASE_KEY_PASSWORD"
 
       - name: 6. Сохранение готового подписанного APK
         uses: actions/upload-artifact@v4
