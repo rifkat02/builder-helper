@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Цвета из старой темы (чтобы не было ошибок поиска) -->
+    <color name="green_primary">#FF9800</color>
+    <color name="green_primary_dark">#F57C00</color>
+    <color name="green_accent">#FFA726</color>
+
+    <!-- Новая тёмная стильная тема -->
     <color name="bg_dark">#0B101D</color>
     <color name="card_dark">#121929</color>
     <color name="input_dark">#1A2336</color>
