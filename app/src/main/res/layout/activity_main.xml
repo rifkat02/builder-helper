@@ -5,18 +5,20 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0F2FE"> <!-- Светло-синий фон -->
+    android:background="#0F172A"> <!-- Тёмно-синий фон -->
 
     <RelativeLayout
+        android:id="@+id/mainContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#0F172A">
 
         <!-- Верхняя шапка -->
         <LinearLayout
             android:id="@+id/topBar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="#BAE6FD"
+            android:background="#1E293B"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:paddingHorizontal="12dp"
@@ -28,7 +30,7 @@
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@android:drawable/ic_menu_sort_by_size"
-                app:tint="#0369A1" />
+                app:tint="#38BDF8" />
 
             <ImageView
                 android:layout_width="32dp"
@@ -49,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Помогатор Строителя"
-                    android:textColor="#0F172A"
+                    android:textColor="#F8FAFC"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -58,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Профессиональный расчёт"
-                    android:textColor="#0284C7"
+                    android:textColor="#38BDF8"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -68,10 +70,10 @@
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@android:drawable/ic_menu_share"
-                app:tint="#0369A1" />
+                app:tint="#38BDF8" />
         </LinearLayout>
 
-        <!-- Контейнер карточки -->
+        <!-- Контейнер карточки калькулятора -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -83,10 +85,10 @@
                 android:id="@+id/calculatorCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFFFF"
+                android:background="#1E293B"
                 android:orientation="vertical"
                 android:padding="20dp"
-                android:elevation="2dp">
+                android:elevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -99,7 +101,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@android:drawable/ic_menu_edit"
-                        app:tint="#0284C7"/>
+                        app:tint="#38BDF8"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -112,7 +114,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Шпаклёвка"
-                            android:textColor="#0F172A"
+                            android:textColor="#F8FAFC"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
@@ -121,23 +123,25 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Расчёт расхода шпаклёвки по типу смеси и площади"
-                            android:textColor="#64748B"
+                            android:textColor="#94A3B8"
                             android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <View
+                    android:id="@+id/dividerLine"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginVertical="16dp"
-                    android:background="#E2E8F0"/>
+                    android:background="#334155"/>
 
+                <!-- Поле 1: Выбор типа -->
                 <TextView
                     android:id="@+id/lblParam1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Вид шпаклёвки"
-                    android:textColor="#0F172A"
+                    android:textColor="#F8FAFC"
                     android:textStyle="bold" />
 
                 <Spinner
@@ -145,15 +149,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="6dp"
-                    android:background="#F1F5F9" />
+                    android:background="#0F172A" />
 
+                <!-- Поле 2: Площадь -->
                 <TextView
                     android:id="@+id/lblParam2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:text="Площадь стен (м²)"
-                    android:textColor="#0F172A"
+                    android:textColor="#F8FAFC"
                     android:textStyle="bold" />
 
                 <EditText
@@ -161,19 +166,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="6dp"
-                    android:background="#F1F5F9"
+                    android:background="#0F172A"
                     android:inputType="numberDecimal"
                     android:paddingHorizontal="12dp"
                     android:text="25"
-                    android:textColor="#0F172A" />
+                    android:textColor="#F8FAFC"
+                    android:textColorHint="#64748B" />
 
+                <!-- Поле 3: Толщина -->
                 <TextView
                     android:id="@+id/lblParam3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:text="Толщина слоя (мм)"
-                    android:textColor="#0F172A"
+                    android:textColor="#F8FAFC"
                     android:textStyle="bold" />
 
                 <EditText
@@ -181,19 +188,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="6dp"
-                    android:background="#F1F5F9"
+                    android:background="#0F172A"
                     android:inputType="numberDecimal"
                     android:paddingHorizontal="12dp"
                     android:text="2"
-                    android:textColor="#0F172A" />
+                    android:textColor="#F8FAFC"
+                    android:textColorHint="#64748B" />
 
+                <!-- Поле 4: Вес -->
                 <TextView
                     android:id="@+id/lblParam4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:text="Вес мешка (кг)"
-                    android:textColor="#0F172A"
+                    android:textColor="#F8FAFC"
                     android:textStyle="bold" />
 
                 <EditText
@@ -201,12 +210,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="6dp"
-                    android:background="#F1F5F9"
+                    android:background="#0F172A"
                     android:inputType="numberDecimal"
                     android:paddingHorizontal="12dp"
                     android:text="20"
-                    android:textColor="#0F172A" />
+                    android:textColor="#F8FAFC"
+                    android:textColorHint="#64748B" />
 
+                <!-- Кнопка Расчёт -->
                 <Button
                     android:id="@+id/btnCalculate"
                     android:layout_width="match_parent"
@@ -218,13 +229,14 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
+                <!-- Поле Результат -->
                 <TextView
                     android:id="@+id/txtResult"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:gravity="center"
-                    android:textColor="#0369A1"
+                    android:textColor="#38BDF8"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:visibility="gone" />
@@ -237,9 +249,9 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
-            android:background="#BAE6FD"
+            android:background="#1E293B"
             android:orientation="horizontal"
-            android:elevation="4dp">
+            android:elevation="8dp">
 
             <LinearLayout
                 android:id="@+id/navHome"
@@ -250,17 +262,18 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/iconNavHome"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@android:drawable/ic_menu_view"
-                    app:tint="#0284C7" />
+                    app:tint="#38BDF8" />
 
                 <TextView
                     android:id="@+id/txtNavHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Домой"
-                    android:textColor="#0284C7"
+                    android:textColor="#38BDF8"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -273,17 +286,18 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/iconNavAbout"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@android:drawable/ic_menu_info_details"
-                    app:tint="#64748B" />
+                    app:tint="#94A3B8" />
 
                 <TextView
                     android:id="@+id/txtNavAbout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="О нас"
-                    android:textColor="#64748B"
+                    android:textColor="#94A3B8"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -296,17 +310,18 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/iconNavContacts"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@android:drawable/ic_menu_call"
-                    app:tint="#64748B" />
+                    app:tint="#94A3B8" />
 
                 <TextView
                     android:id="@+id/txtNavContacts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Контакты"
-                    android:textColor="#64748B"
+                    android:textColor="#94A3B8"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -319,31 +334,33 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/iconNavPrivacy"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@android:drawable/ic_menu_preferences"
-                    app:tint="#64748B" />
+                    app:tint="#94A3B8" />
 
                 <TextView
                     android:id="@+id/txtNavPrivacy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Приваси"
-                    android:textColor="#64748B"
+                    android:textColor="#94A3B8"
                     android:textSize="11sp" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- Боковое меню с кнопкой смены темы внизу и полным переводом -->
+    <!-- Боковое меню -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#FFFFFF">
+        android:background="#1E293B">
 
         <LinearLayout
+            android:id="@+id/sidebarContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -354,7 +371,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Калькуляторы"
-                android:textColor="#0F172A"
+                android:textColor="#F8FAFC"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -370,24 +387,28 @@
                     android:orientation="vertical">
 
                     <Button android:id="@+id/menuPutty" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Шпаклёвка" android:backgroundTint="#0284C7" android:textColor="#FFFFFF" android:layout_marginTop="4dp"/>
-                    <Button android:id="@+id/menuWallpaper" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Обои по стенам" android:backgroundTint="#F1F5F9" android:textColor="#0F172A" android:layout_marginTop="4dp"/>
-                    <Button android:id="@+id/menuPaint" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Краска (все виды)" android:backgroundTint="#F1F5F9" android:textColor="#0F172A" android:layout_marginTop="4dp"/>
-                    <Button android:id="@+id/menuColoring" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Колеровка" android:backgroundTint="#F1F5F9" android:textColor="#0F172A" android:layout_marginTop="4dp"/>
-                    <Button android:id="@+id/menuCement" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Цемент и песок" android:backgroundTint="#F1F5F9" android:textColor="#0F172A" android:layout_marginTop="4dp"/>
-                    <Button android:id="@+id/menuPlaster" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Декоративная штукатурка" android:backgroundTint="#F1F5F9" android:textColor="#0F172A" android:layout_marginTop="4dp"/>
-                    <Button android:id="@+id/menuPenoplex" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Обшивка пеноплексом" android:backgroundTint="#F1F5F9" android:textColor="#0F172A" android:layout_marginTop="4dp"/>
-                    <Button android:id="@+id/menuPvc" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ПВХ панели" android:backgroundTint="#F1F5F9" android:textColor="#0F172A" android:layout_marginTop="4dp"/>
-                    <Button android:id="@+id/menuFloorTile" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Напольная плитка" android:backgroundTint="#F1F5F9" android:textColor="#0F172A" android:layout_marginTop="4dp"/>
-                    <Button android:id="@+id/menuMasonry" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Кладка блоков и кирпича" android:backgroundTint="#F1F5F9" android:textColor="#0F172A" android:layout_marginTop="4dp"/>
-                    <Button android:id="@+id/menuCeilingTile" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Потолочная плитка" android:backgroundTint="#F1F5F9" android:textColor="#0F172A" android:layout_marginTop="4dp"/>
-                    <Button android:id="@+id/menuPlinth" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Плинтус" android:backgroundTint="#F1F5F9" android:textColor="#0F172A" android:layout_marginTop="4dp"/>
-                    <Button android:id="@+id/menuSelfLeveling" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Наливной пол / Стяжка" android:backgroundTint="#F1F5F9" android:textColor="#0F172A" android:layout_marginTop="4dp"/>
+                    <Button android:id="@+id/menuWallpaper" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Обои по стенам" android:backgroundTint="#0F172A" android:textColor="#F8FAFC" android:layout_marginTop="4dp"/>
+                    <Button android:id="@+id/menuPaint" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Краска (все виды)" android:backgroundTint="#0F172A" android:textColor="#F8FAFC" android:layout_marginTop="4dp"/>
+                    <Button android:id="@+id/menuColoring" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Колеровка" android:backgroundTint="#0F172A" android:textColor="#F8FAFC" android:layout_marginTop="4dp"/>
+                    <Button android:id="@+id/menuCement" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Цемент и песок" android:backgroundTint="#0F172A" android:textColor="#F8FAFC" android:layout_marginTop="4dp"/>
+                    <Button android:id="@+id/menuPlaster" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Декоративная штукатурка" android:backgroundTint="#0F172A" android:textColor="#F8FAFC" android:layout_marginTop="4dp"/>
+                    <Button android:id="@+id/menuPenoplex" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Обшивка пеноплексом" android:backgroundTint="#0F172A" android:textColor="#F8FAFC" android:layout_marginTop="4dp"/>
+                    <Button android:id="@+id/menuPvc" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ПВХ панели" android:backgroundTint="#0F172A" android:textColor="#F8FAFC" android:layout_marginTop="4dp"/>
+                    <Button android:id="@+id/menuFloorTile" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Напольная плитка" android:backgroundTint="#0F172A" android:textColor="#F8FAFC" android:layout_marginTop="4dp"/>
+                    <Button android:id="@+id/menuMasonry" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Кладка блоков и кирпича" android:backgroundTint="#0F172A" android:textColor="#F8FAFC" android:layout_marginTop="4dp"/>
+                    <Button android:id="@+id/menuCeilingTile" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Потолочная плитка" android:backgroundTint="#0F172A" android:textColor="#F8FAFC" android:layout_marginTop="4dp"/>
+                    <Button android:id="@+id/menuPlinth" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Плинтус" android:backgroundTint="#0F172A" android:textColor="#F8FAFC" android:layout_marginTop="4dp"/>
+                    <Button android:id="@+id/menuSelfLeveling" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Наливной пол / Стяжка" android:backgroundTint="#0F172A" android:textColor="#F8FAFC" android:layout_marginTop="4dp"/>
                 </LinearLayout>
             </ScrollView>
 
-            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E2E8F0" android:layout_marginVertical="12dp"/>
+            <View
+                android:id="@+id/sidebarDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#334155"
+                android:layout_marginVertical="12dp"/>
 
-            <!-- Нижняя часть меню: Язык и Кнопка Светлого режима -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -398,7 +419,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="НАСТРОЙКИ"
-                    android:textColor="#64748B"
+                    android:textColor="#94A3B8"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -408,24 +429,24 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Язык интерфейса"
-                    android:textColor="#0F172A" />
+                    android:textColor="#F8FAFC" />
 
                 <Spinner
                     android:id="@+id/spinnerLanguage"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="4dp"
-                    android:background="#F1F5F9" />
+                    android:background="#0F172A" />
 
-                <!-- Кнопка переключения светлого/темного режима внизу меню -->
+                <!-- Переключатель светлой/тёмной темы -->
                 <Button
                     android:id="@+id/btnToggleTheme"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:layout_marginTop="12dp"
-                    android:backgroundTint="#E2E8F0"
-                    android:text="Светлая тема"
-                    android:textColor="#0F172A"
+                    android:backgroundTint="#334155"
+                    android:text="Светлый режим"
+                    android:textColor="#F8FAFC"
                     android:textSize="12sp" />
             </LinearLayout>
 
