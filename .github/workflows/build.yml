@@ -1,9 +1,7 @@
-name: Build Builder Helper APK
+name: Build Android APK
 
 on:
   push:
-    branches: [ "main", "master" ]
-  pull_request:
     branches: [ "main", "master" ]
 
 jobs:
@@ -12,24 +10,21 @@ jobs:
 
     steps:
     - name: 1. Клонирование репозитория
-      uses: actions/checkout@v5
+      uses: actions/checkout@v4
 
     - name: 2. Настройка Java (JDK 17)
-      uses: actions/setup-java@v5
+      uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: 3. Установка Gradle
+    - name: 3. Установка Gradle в систему
       run: sudo apt-get update && sudo apt-get install -y gradle
 
-    - name: 4. Создание Gradle Wrapper
-      run: gradle wrapper
+    - name: 4. Сборка Debug APK
+      run: gradle assembleDebug
 
-    - name: 5. Сборка Debug APK
-      run: ./gradlew assembleDebug
-
-    - name: 6. Сохранение готового APK
+    - name: 5. Сохранение готового APK
       uses: actions/upload-artifact@v4
       with:
         name: BuilderHelper-Debug-APK
